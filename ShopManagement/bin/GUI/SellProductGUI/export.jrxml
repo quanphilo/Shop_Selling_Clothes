@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2be4931-1b66-4ca1-8224-fc475fe885ee">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="30" uuid="756407ec-7256-4630-b1ba-aa32fca025d0"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[My Report]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-11" y="7" width="128" height="13" uuid="82bb498c-876a-4ba9-b899-5e6c3f75d772"/>
+				<text><![CDATA[Create By: $P{createdBy}]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-10" y="64" width="571" height="1" uuid="d7c1381f-998a-438c-8aaf-8cad716aca64"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="50" width="71" height="15" uuid="13d045d8-3d8b-43bf-a674-d539881a1c8b"/>
+				<text><![CDATA[Id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="50" width="91" height="16" uuid="1ec16b82-0cec-4647-9d54-54781d651a4c"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="50" width="81" height="15" uuid="c10c71da-fc88-45a6-8870-ae50214f0ce1"/>
+				<text><![CDATA[Gender]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="71" height="20" uuid="4bfc4382-52de-4dba-aff9-598e1f739982"/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="91" height="20" uuid="8c2d153a-7f90-42ce-bea1-f0b6ad7abc22"/>
+				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="0" width="100" height="20" uuid="f8527cdf-508f-4167-8099-68fcc1290f19"/>
+				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
