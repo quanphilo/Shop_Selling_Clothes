@@ -371,6 +371,8 @@ public class AccountForm extends JPanel {
                 txtBirthday.setEditable(true);
                 txtPhone.setEditable(true);
                 txtCMND.setEditable(true);
+                txtUsername.setEditable(true);  
+                txtPassword.setEditable(true);  
 
                 txtIdEmployee.setText("EM" + date.getTime());
                 txtEmployeeName.setText("");

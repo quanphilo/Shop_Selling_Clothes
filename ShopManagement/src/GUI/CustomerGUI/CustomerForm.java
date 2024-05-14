@@ -67,7 +67,7 @@ public class CustomerForm extends JPanel {
 		pnOrder.add(pnDetails);
 		pnDetails.setLayout(null);
 
-		btnAddCus = new JButton("Thên KH");
+		btnAddCus = new JButton("Thêm KH");
 		btnAddCus.setIcon(new ImageIcon(CustomerForm.class.getResource("/images/follow.png")));
 		btnAddCus.setForeground(new Color(255, 255, 224));
 		btnAddCus.setBackground(new Color(0, 128, 128));
@@ -353,7 +353,7 @@ public class CustomerForm extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				int row = tblDsKhachHang.getSelectedRow();
 				if (row < 0) {
-					JOptionPane.showMessageDialog(null, "Chọn khách hàng cần thay đổi");
+					JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng cần sửa!");
 					return;
 				}
 				String id_voucher = String.valueOf(tblDsKhachHang.getValueAt(row, 0));
