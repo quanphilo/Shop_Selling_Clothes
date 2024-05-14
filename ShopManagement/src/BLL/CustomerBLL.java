@@ -25,13 +25,11 @@ public class CustomerBLL {
 		CustomerDTO customerDTO = customerDAL.getCustomerById(id_customer);
 		return customerDTO;
 	}
-	
-	
+		
 	//updating ...
 	public Vector<CustomerDTO> getCustomerOfMonth(int MONTH) {
 		return customerDAL.getCustomerOfMonth(MONTH);
 	}
-
 
 	public int insert(CustomerDTO customerDTO) {
 		if(customerDTO.getFullname().isBlank() || 

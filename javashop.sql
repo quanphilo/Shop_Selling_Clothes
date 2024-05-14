@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 11, 2024 lúc 10:02 AM
+-- Thời gian đã tạo: Th5 14, 2024 lúc 01:18 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `tbl_account` (
   `id_account` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `status` TINYINT(1) NOT NULL DEFAULT 1
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `tbl_customer` (
   `email` varchar(20) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
-  `status` TINYINT(1) NOT NULL DEFAULT 1
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -389,7 +389,7 @@ CREATE TABLE `tbl_product` (
   `quantity` int(11) NOT NULL,
   `price` float DEFAULT NULL,
   `image` varchar(100) NOT NULL,
-  `status` TINYINT(1) NOT NULL DEFAULT 1
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -399,11 +399,11 @@ CREATE TABLE `tbl_product` (
 INSERT INTO `tbl_product` (`id_product`, `id_brand`, `id_categorychild`, `name`, `quantity`, `price`, `image`, `status`) VALUES
 ('PR1640619150209', 'BR1640534951452', 'CC1640934361882', 'Áo thun Cool', 50, 150000, '10.jpg', 1),
 ('PR1640619188733', 'BR1640534998209', 'CC1640934361883', 'Áo sơ mi BJ', 34, 200000, '25.jpg', 1),
-('PR1640621183186', 'BR1640621183186', 'CC1640534755791', 'Quần dài BK', 79, 300000, '35.jpg', 1),
+('PR1640621183186', 'BR1640621183186', 'CC1640534755791', 'Quần dài BK', 79, 22000, '35.jpg', 1),
 ('PR1640621209542', 'BR1640534951452', 'CC1640934361883', 'Áo sơ mi hoa hòe', 18, 170000, '38.jpg', 1),
-('PR1640942292220', 'BR1640621183156', 'CC1640534755793', 'Quần jeans', 23, 220000, '13.jpg', 1),
-('PR1640942292827', 'BR1640621183176', 'CC1640534755792', 'Quần short Canifa', 22, 120000, '12.jpg', 1),
-('PR1640942292840', 'BR1640621183166', 'CC1640534755794', 'Quần kaki Elise', 45, 150000, '14.jpg', 1);
+('PR1640942292220', 'BR1640621183156', 'CC1640534755793', 'Quần jeans', 23, 280000, '13.jpg', 1),
+('PR1640942292827', 'BR1640621183176', 'CC1640534755792', 'Quần short Canifa', 22, 160000, '12.jpg', 1),
+('PR1640942292840', 'BR1640621183166', 'CC1640534755794', 'Quần kaki Elise', 45, 180000, '14.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -437,7 +437,7 @@ CREATE TABLE `tbl_supplier` (
   `id_supplier` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `status` TINYINT(1) NOT NULL DEFAULT 1
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -445,12 +445,12 @@ CREATE TABLE `tbl_supplier` (
 --
 
 INSERT INTO `tbl_supplier` (`id_supplier`, `name`, `address`, `status`) VALUES
-('SU1696419239320', 'Công ty Cổ Phần May Phú Thịnh', '13A, Tống Văn Trân, Phường 5, Quận 11 TP. Hồ Chí Minh',1),
-('SU1696419239321', 'Công ty TNHH May Trần Trúc', '292 - 294 Nguyễn Văn Luông, P. 12, Q. 6, TP. Hồ Chí Minh',1),
-('SU1696419239322', 'Tập Đoàn Dệt May Việt Nam', 'Số 10 Nguyễn Huệ, Q. 1, TP. Hồ Chí Minh',1),
-('SU1696419239323', 'Việt Hùng - Cơ Sở May Việt Hùng', '2385/87/21 Phạm Thế Hiển, P. 6, Q. 8, TP. Hồ Chí Minh',1),
-('SU1696419239324', 'Xưởng May Mặc Kim Hải', 'Số 725/3B, Khóm Tây Khánh 5, P. Mỹ Hòa, TP. Long Xuyên, An Giang',1),
-('SU1696419239325', 'Công Ty TNHH MTV Dệt May Phương Lan', 'Thôn Vĩnh Trị, Xã Yên Trị, Huyện ý Yên, Nam Định',1);
+('SU1696419239320', 'Công ty Cổ Phần May Phú Thịnh', '13A, Tống Văn Trân, Phường 5, Quận 11 TP. Hồ Chí Minh', 1),
+('SU1696419239321', 'Công ty TNHH May Trần Trúc', '292 - 294 Nguyễn Văn Luông, P. 12, Q. 6, TP. Hồ Chí Minh', 1),
+('SU1696419239322', 'Tập Đoàn Dệt May Việt Nam', 'Số 10 Nguyễn Huệ, Q. 1, TP. Hồ Chí Minh', 1),
+('SU1696419239323', 'Việt Hùng - Cơ Sở May Việt Hùng', '2385/87/21 Phạm Thế Hiển, P. 6, Q. 8, TP. Hồ Chí Minh', 1),
+('SU1696419239324', 'Xưởng May Mặc Kim Hải', 'Số 725/3B, Khóm Tây Khánh 5, P. Mỹ Hòa, TP. Long Xuyên, An Giang', 1),
+('SU1696419239325', 'Công Ty TNHH MTV Dệt May Phương Lan', 'Thôn Vĩnh Trị, Xã Yên Trị, Huyện ý Yên, Nam Định', 1);
 
 -- --------------------------------------------------------
 
@@ -461,19 +461,19 @@ INSERT INTO `tbl_supplier` (`id_supplier`, `name`, `address`, `status`) VALUES
 CREATE TABLE `tbl_voucher` (
   `id_voucher` varchar(50) NOT NULL,
   `code` varchar(10) NOT NULL,
-  `discountpercent` int NOT NULL,
+  `discountpercent` int(11) NOT NULL,
   `startdate` date NOT NULL,
   `enddate` date NOT NULL,
-  `status` TINYINT(1) NOT NULL DEFAULT 1
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_voucher`
 --
 
-INSERT INTO `tbl_voucher` (`id_voucher`, `code`, `discountpercent`, `startdate`, `enddate`,`status`) VALUES
-('VC1640534596143', 'Null', 0, '2024-01-01', '2024-12-31',1),
-('VC1640534625092', 'UuDai', 20, '2024-04-01', '2024-05-30',1);
+INSERT INTO `tbl_voucher` (`id_voucher`, `code`, `discountpercent`, `startdate`, `enddate`, `status`) VALUES
+('VC1640534596143', 'Null', 0, '2024-01-01', '2024-12-31', 1),
+('VC1640534625092', 'UuDai', 20, '2024-04-01', '2024-05-30', 1);
 
 -- --------------------------------------------------------
 

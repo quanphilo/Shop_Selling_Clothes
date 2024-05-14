@@ -77,7 +77,7 @@ public class ProductDialog extends JDialog {
 		pnDetails.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin s\u1EA3n ph\u1EA9m",
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin sản phẩm",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel.setBounds(2, 12, 380, 290);
 		pnDetails.add(panel);

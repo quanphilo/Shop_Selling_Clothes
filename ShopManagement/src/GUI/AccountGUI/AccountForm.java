@@ -453,10 +453,7 @@ public class AccountForm extends JPanel {
                                     txtUsername.getText(),
                                     String.valueOf(txtPassword.getPassword()),
                                     status);
-                            if (accountDTO.getUsename().isBlank() || String.valueOf(accountDTO.getPassword()).isBlank()) {
-                                JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
-                                return;
-                            }
+
                             int kq = accountBLL.insert(accountDTO);
                             if (kq == 1) {
                                 int kq1 = employeeBLL.insert(employeeDTO);
@@ -559,10 +556,6 @@ public class AccountForm extends JPanel {
                             int kq = employeeBLL.update(employeeDTO);
                             if (kq == 1) {
                                 AccountDTO accountDTO = new AccountDTO(txtIdEmployee.getText(), txtUsername.getText(), String.valueOf(txtPassword.getText()));
-                                if (accountDTO.getUsename().isBlank() || String.valueOf(accountDTO.getPassword()).isBlank()) {
-                                    JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
-                                    return;
-                                }
                                 
                                 int activeAccount=0, blockAccount=0;
                                 if (radioActive.isSelected()) {

@@ -500,9 +500,7 @@ public class CategoryForm extends JPanel {
                             }
                         }
                     }
-                });
-
-		
+                });	
 	}
 
 	public void refreshComponents() {

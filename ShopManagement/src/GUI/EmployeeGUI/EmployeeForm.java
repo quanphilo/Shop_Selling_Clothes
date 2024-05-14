@@ -231,7 +231,6 @@ public class EmployeeForm extends JPanel {
 		lblNewLabel.setBounds(12, 244, 58, 25);
 		panel.add(lblNewLabel);
 
-		//
 		String[] gender = { "Nam", "Nữ" };
 		cboGender = new JComboBox(gender);
 		cboGender.setBounds(277, 29, 93, 25);
