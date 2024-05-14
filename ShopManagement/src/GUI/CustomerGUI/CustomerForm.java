@@ -2,8 +2,8 @@ package GUI.CustomerGUI;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.event.*;
+import javax.swing.border.*;
 
 import java.util.Date;
 import java.text.ParseException;
@@ -29,6 +29,7 @@ public class CustomerForm extends JPanel {
 	private JLabel lblNgyLm;
 	private JLabel lblChcV;
 	private JButton btnAddCus;
+        private JButton btnDeleteCus;
 	private JButton btnUpdateCus;
 	private JTextField txtMaKH;
 	private JTextField txtSDT;
@@ -70,19 +71,25 @@ public class CustomerForm extends JPanel {
 		btnAddCus.setIcon(new ImageIcon(CustomerForm.class.getResource("/images/follow.png")));
 		btnAddCus.setForeground(new Color(255, 255, 224));
 		btnAddCus.setBackground(new Color(0, 128, 128));
-		btnAddCus.setBounds(26, 6, 124, 30);
+		btnAddCus.setBounds(26, 7, 124, 30);
 		pnDetails.add(btnAddCus);
 
+                btnDeleteCus = new JButton("Xoá KH");
+		btnDeleteCus.setIcon(new ImageIcon(CustomerForm.class.getResource("/images/delete-customer.png")));
+		btnDeleteCus.setForeground(new Color(255, 255, 224));
+		btnDeleteCus.setBackground(new Color(0, 128, 128));
+		btnDeleteCus.setBounds(26, 42, 124, 30);
+		pnDetails.add(btnDeleteCus);
+                
 		btnUpdateCus = new JButton("Sửa KH");
 		btnUpdateCus.setIcon(new ImageIcon(CustomerForm.class.getResource("/images/edit.png")));
-
 		btnUpdateCus.setForeground(new Color(255, 255, 224));
 		btnUpdateCus.setBackground(new Color(0, 128, 128));
-		btnUpdateCus.setBounds(181, 6, 124, 30);
+		btnUpdateCus.setBounds(181, 7, 124, 30);
 		pnDetails.add(btnUpdateCus);
 
 		JPanel pnAction = new JPanel();
-		pnAction.setBorder(new TitledBorder(null, "Th\u00F4ng tin kh\u00E1ch h\u00E0ng", TitledBorder.LEADING,
+		pnAction.setBorder(new TitledBorder(null, "Thông tin khách hàng", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 128, 0)));
 		pnAction.setBounds(0, 12, 329, 358);
 		pnOrder.add(pnAction);
@@ -153,6 +160,16 @@ public class CustomerForm extends JPanel {
 		txtTenKH.setColumns(10);
 		txtTenKH.setBounds(100, 80, 217, 27);
 		pnAction.add(txtTenKH);
+                
+                txtTenKH.addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent e) {
+                    char c = e.getKeyChar();
+                    if (Character.isDigit(c)) {
+                        e.consume(); // Loại bỏ ký tự số nhập vào
+                        JOptionPane.showMessageDialog(null, "Vui lòng không nhập số vào ô Tên KH!", "Lỗi", JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            });
 
 		lblTnNv = new JLabel("Tên KH");
 		lblTnNv.setForeground(new Color(0, 100, 0));
@@ -173,7 +190,7 @@ public class CustomerForm extends JPanel {
 		pnAction.add(txtPoint);
 
 		pnOptions = new JPanel();
-		pnOptions.setBorder(new TitledBorder(null, "Danh s\u00E1ch kh\u00E1ch h\u00E0ng", TitledBorder.LEADING,
+		pnOptions.setBorder(new TitledBorder(null, "Danh sách khách hàng", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 128, 0)));
 		pnOptions.setBounds(335, 48, 495, 442);
 		add(pnOptions);
@@ -183,13 +200,13 @@ public class CustomerForm extends JPanel {
 		dtmHD.setColumnIdentifiers(headerHD);
 		pnOptions.setLayout(null);
 		tblDsKhachHang = new JTable();
-                tblDsKhachHang.setDefaultEditor(Object.class, null);
 
 		tblDsKhachHang.setBounds(0, 0, 486, 300);
 		tblDsKhachHang.setModel(dtmHD);
 		JScrollPane sc1 = new JScrollPane(tblDsKhachHang, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		sc1.setBounds(12, 30, 478, 300);
+		tblDsKhachHang.setDefaultEditor(Object.class, null);
+                sc1.setBounds(12, 30, 478, 300);
 		pnOptions.add(sc1);
 
 		JPanel panel = new JPanel();
@@ -261,8 +278,8 @@ public class CustomerForm extends JPanel {
 		});
 
 		btnAddCus.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				date = new Date();
+			public void mouseClicked(MouseEvent e) {                                
+                                date = new Date();
 				txtTenKH.setEditable(true);
 				txtSDT.setEditable(true);
 				txtDiaChi.setEditable(true);
@@ -287,56 +304,56 @@ public class CustomerForm extends JPanel {
 				btnConfirm.setBounds(181, 42, 124, 30);
 				pnDetails.add(btnConfirm);
 				refreshComponents();
-                                btnConfirm.addMouseListener(new MouseAdapter() {
-                                    public void mouseClicked(MouseEvent e) {
-                                            if (txtTenKH.getText().trim().isEmpty() || txtEmail.getText().trim().isEmpty() ||
-                                                txtDiaChi.getText().trim().isEmpty() || txtSDT.getText().trim().isEmpty() ||
-                                                txtPoint.getText().trim().isEmpty()) {
-                                                JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
-                                                return;
-                                            }
+				btnConfirm.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent e) {
+						try {
+                                                        if (txtTenKH.getText().trim().isEmpty() ||
+                                                            txtEmail.getText().trim().isEmpty() ||
+                                                            txtDiaChi.getText().trim().isEmpty() ||
+                                                            txtSDT.getText().trim().isEmpty() ) {
+                                                            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+                                                            return;
+                                                        }
+                                                        // Kiểm tra định dạng email hợp lệ
+                                                        if (!txtEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+                                                            JOptionPane.showMessageDialog(null, "Email không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
+                                                            return;
+                                                        }           
+                                                        // Kiểm tra định dạng số điện thoại hợp lệ
+                                                        if (!txtSDT.getText().matches("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$")) {
+                                                            JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
+                                                            return;
+                        }
+							CustomerDTO customerDTO = new CustomerDTO(
+									txtMaKH.getText(), txtTenKH.getText(), txtEmail.getText(), txtDiaChi.getText(),
+									txtSDT.getText(), sdf.parse(txtNgaytao.getText()),
+									Integer.valueOf(txtPoint.getText()));
+							int kq = customerBLL.insert(customerDTO);
+							if (kq == 1) {
+								JOptionPane.showMessageDialog(null, "Thêm thành công!");
+								txtTenKH.setEditable(false);
+								pnDetails.remove(btnConfirm);
+								loadTable();
+								refreshComponents();
+								enableButtoninCustomer();
+							} else {
+								JOptionPane.showMessageDialog(null, "Thêm thất bại!");
+							}
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
 
-                                            // Kiểm tra định dạng email hợp lệ
-                                            if (!txtEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-                                                JOptionPane.showMessageDialog(null, "Email không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
-                                                return;
-                                            }
-
-                                            // Kiểm tra định dạng số điện thoại hợp lệ
-                                            if (!txtSDT.getText().matches("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$")) {
-                                                JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
-                                                return;
-                                            }
-
-                                            try {
-                                                CustomerDTO customerDTO = new CustomerDTO(
-                                                    txtMaKH.getText(), txtTenKH.getText(), txtEmail.getText(), txtDiaChi.getText(),
-                                                    txtSDT.getText(), sdf.parse(txtNgaytao.getText()),
-                                                    Integer.valueOf(txtPoint.getText()));
-                                                int kq = customerBLL.insert(customerDTO);
-                                                if (kq == 1) {
-                                                    JOptionPane.showMessageDialog(null, "Thêm thành công!");
-                                                    txtTenKH.setEditable(false);
-                                                    pnDetails.remove(btnConfirm);
-                                                    loadTable();
-                                                    refreshComponents();
-                                                    enableButtoninCustomer();
-                                                } else {
-                                                    JOptionPane.showMessageDialog(null, "Thêm thất bại!", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                                                }
-                                                } catch (ParseException e1) {
-                                                    e1.printStackTrace();
-                                                }
-                                            }
-                                        });
-                                    }
-                                });
+			}
+		});
 
 		btnUpdateCus.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				int row = tblDsKhachHang.getSelectedRow();
 				if (row < 0) {
-					JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng cần sửa");
+					JOptionPane.showMessageDialog(null, "Chọn khách hàng cần thay đổi");
 					return;
 				}
 				String id_voucher = String.valueOf(tblDsKhachHang.getValueAt(row, 0));
@@ -350,6 +367,7 @@ public class CustomerForm extends JPanel {
 				txtTenKH.setText("");
 				txtSDT.setText("");
 				txtDiaChi.setText("");
+				txtNgaytao.setText("");
 				txtEmail.setText("");
 
 				disableButtoninCustomer();
@@ -364,55 +382,76 @@ public class CustomerForm extends JPanel {
 
 				btnConfirm.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent e) {
-                                                if (txtTenKH.getText().trim().isEmpty() || txtEmail.getText().trim().isEmpty() ||
-                                                    txtDiaChi.getText().trim().isEmpty() || txtSDT.getText().trim().isEmpty() ||
-                                                    txtPoint.getText().trim().isEmpty()) {
-                                                    JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
-                                                    return;
-                                                }
-                                                // Kiểm tra định dạng email hợp lệ
-                                                if (!txtEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-                                                    JOptionPane.showMessageDialog(null, "Email không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
-                                                    return;
-                                                }
-                                                // Kiểm tra định dạng số điện thoại hợp lệ
-                                                if (!txtSDT.getText().matches("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$")) {
-                                                    JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
-                                                    return;
-                                                }
+						try {
+                                                        if (txtTenKH.getText().trim().isEmpty() ||
+                                                            txtEmail.getText().trim().isEmpty() ||
+                                                            txtDiaChi.getText().trim().isEmpty() ||
+                                                            txtSDT.getText().trim().isEmpty() ) {
+                                                            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin");
+                                                            return;
+                                                        }
+                                                        // Kiểm tra định dạng email hợp lệ
+                                                        if (!txtEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+                                                            JOptionPane.showMessageDialog(null, "Email không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
+                                                            return;
+                                                        }           
+                                                        // Kiểm tra định dạng số điện thoại hợp lệ
+                                                        if (!txtSDT.getText().matches("^(0|\\+84)(\\s|\\.)?((3[2-9])|(5[689])|(7[06-9])|(8[1-689])|(9[0-46-9]))(\\d)(\\s|\\.)?(\\d{3})(\\s|\\.)?(\\d{3})$")) {
+                                                            JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
+                                                            return;
+                                                        }
+							CustomerDTO customerDTO = new CustomerDTO(
+									txtMaKH.getText(),
+									txtTenKH.getText(),
+									txtEmail.getText(),
+									txtDiaChi.getText(),
+									txtSDT.getText(),
+									sdf.parse(txtNgaytao.getText()),
+									Integer.valueOf(txtPoint.getText()));
+							int kq = customerBLL.update(customerDTO);
+							if (kq == 1) {
+								JOptionPane.showMessageDialog(null, "Sửa thành công!");
+								txtTenKH.setEditable(false);
+                                                                txtDiaChi.setEditable(false);
+                                                                txtEmail.setEditable(false);
+                                                                txtSDT.setEditable(false);
+								pnDetails.remove(btnConfirm);
+								loadTable();
+								refreshComponents();
+								enableButtoninCustomer();
+							} else {
+								JOptionPane.showMessageDialog(null, "Sửa thất bại!");
+							}
+						} catch (ParseException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+			}
+		});
 
-                                                try {
-                                                    CustomerDTO customerDTO = new CustomerDTO(
-                                                        txtMaKH.getText(),
-                                                        txtTenKH.getText(),
-                                                        txtEmail.getText(),
-                                                        txtDiaChi.getText(),
-                                                        txtSDT.getText(),
-                                                        sdf.parse(txtNgaytao.getText()),
-                                                        Integer.valueOf(txtPoint.getText()));
-                                                    int kq = customerBLL.update(customerDTO);
-                                                    if (kq == 1) {
-                                                        JOptionPane.showMessageDialog(null, "Sửa thành công!");
-                                                            txtTenKH.setEditable(false);
-                                                            txtEmail.setEditable(false);
-                                                            txtSDT.setEditable(false);
-                                                            txtDiaChi.setEditable(false);
-                                                            pnDetails.remove(btnConfirm);
-                                                            loadTable();
-                                                            refreshComponents();
-                                                            enableButtoninCustomer();
-                                                    } else {
-                                                        JOptionPane.showMessageDialog(null, "Cập nhật thất bại");
-                                                    }
-                                                    } catch (ParseException pe) {
-                                                        pe.printStackTrace();
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    });
-
-
+                btnDeleteCus.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        int row = tblDsKhachHang.getSelectedRow();
+                        if (row < 0) {
+                            JOptionPane.showMessageDialog(null, "Vui lòng chọn khách hàng cần xoá!");
+                            return;
+                        }
+                        String customerId = String.valueOf(tblDsKhachHang.getValueAt(row, 0));
+                        int rs = JOptionPane.showConfirmDialog(null, "Xác nhận xoá khách hàng!");
+                        if (rs == 0) {
+                            int kq = customerBLL.delete(customerId, 0); 
+                            if (kq == 1) {
+                                JOptionPane.showMessageDialog(null, "Xoá thành công!");
+                                removeCustomerFromTable(customerId);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Xoá thất bại!");
+                            }
+                        }
+                    }
+                });
+           
 		btnExportExcel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				Vector<String> header = new Vector<String>();
@@ -442,7 +481,17 @@ public class CustomerForm extends JPanel {
 		});
 
 	}
-
+        
+        // Loại bỏ khách hàng ra khỏi tblDsKhachHang
+        private void removeCustomerFromTable(String customerId) {
+            DefaultTableModel model = (DefaultTableModel) tblDsKhachHang.getModel();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                if (model.getValueAt(i, 0).equals(customerId)) {
+                    model.removeRow(i);
+                    return;
+                }
+            }
+        }
 	public void refreshComponents() {
 		this.repaint();
 		this.revalidate();
@@ -451,11 +500,13 @@ public class CustomerForm extends JPanel {
 	public void disableButtoninCustomer() {
 		btnAddCus.setEnabled(false);
 		btnUpdateCus.setEnabled(false);
+		btnDeleteCus.setEnabled(false);
 	}
 
 	public void enableButtoninCustomer() {
 		btnAddCus.setEnabled(true);
 		btnUpdateCus.setEnabled(true);
+		btnDeleteCus.setEnabled(true);
 	}
 
 	// Load Table

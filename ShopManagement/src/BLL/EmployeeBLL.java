@@ -74,10 +74,6 @@ public class EmployeeBLL {
 		return kq;
 	}
 	
-	// public int delete(String id_employee) {
-	// 	int kq = employeeDAL.delete(id_employee);
-	// 	return kq;
-	// }
 	public int  writeExcel(Vector<Vector<String>> listObjectData, Vector<String> header) {
 		return readWriteFile.writeExcel(listObjectData, header);
 	}

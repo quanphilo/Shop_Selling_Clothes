@@ -368,7 +368,6 @@ public class OrderDialog extends JDialog {
                 total += order.getTotalprice();
             }
 
-            // Dùng DecimalFormat để định dạng số
             DecimalFormat formatter = new DecimalFormat("#,###");
             txtTotalMain.setText(formatter.format(total));
         }

@@ -31,7 +31,7 @@ CREATE TABLE `tbl_account` (
   `id_account` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -43,7 +43,7 @@ INSERT INTO `tbl_account` (`id_account`, `username`, `password`, `status`) VALUE
 ('EM01', 'xuanthang', '4c5743a8dd37febf93286c0308800de0', 1),
 ('EM02', 'giahao', '5b3aa86f2ab97e949b04aeace3371a44', 1),
 ('EM03', 'duykhuong', '4e70875f8cde197f744ca41998fb120c', 1),
-('EM04', 'minhhuu', 'd43a03baf78ace114191bd8d60d496be', 1);
+('EM04', 'huuminh', '87939804ae7b49e62b47a798e7cd0511', 1);
 
 -- --------------------------------------------------------
 
@@ -129,21 +129,22 @@ CREATE TABLE `tbl_customer` (
   `point` int(11) NOT NULL DEFAULT 0,
   `email` varchar(20) DEFAULT NULL,
   `address` varchar(50) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL
+  `phone` varchar(50) DEFAULT NULL,
+  `status` TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_customer`
 --
 
-INSERT INTO `tbl_customer` (`id_customer`, `fullname`, `createdate`, `point`, `email`, `address`, `phone`) VALUES
-('CU1640535729418', 'Trần Minh Nghĩa', '2024-01-26', 4115, 'nghia@gmail.com', 'TP.HCM', '0858347401'),
-('CU1640621278509', 'Huỳnh Minh Hưng', '2024-02-27', 5130, 'hung0201@gmail.com', 'Bình Phước', '0341202891'),
-('CU1640759442598', 'La Chí Bàng', '2024-03-29', 3940, 'chibang04@gmaill.com', 'Bình Dương', '0861121354'),
-('CU1640759924238', 'Trương Tấn Đạt', '2024-01-29', 3050, 'datzero9@gmail.com', 'TP.HCM', '0901121601'),
-('CU1640760118459', 'Nguyễn Thị Thu', '2024-02-29', 800, 'thusgu@gmail.com', 'Hà Nội', '0312100911'),
-('CU1640760118460', 'Nguyễn Ánh Ngọc', '2024-03-05', 400, 'ngocnguyen@gmail.com', 'TP.HCM', '0821077113'),
-('CU1640760118461', 'Lê Thị Huệ', '2024-03-10', 350, 'huehoa1203@gmail.com', 'TP.HCM', '0331560911');
+INSERT INTO `tbl_customer` (`id_customer`, `fullname`, `createdate`, `point`, `email`, `address`, `phone`, `status`) VALUES
+('CU1640535729418', 'Trần Minh Nghĩa', '2024-01-26', 4115, 'nghia@gmail.com', 'TP.HCM', '0858347401', 1),
+('CU1640621278509', 'Huỳnh Minh Hưng', '2024-02-27', 5130, 'hung0201@gmail.com', 'Bình Phước', '0341202891', 1),
+('CU1640759442598', 'La Chí Bàng', '2024-03-29', 3940, 'chibang04@gmaill.com', 'Bình Dương', '0861121354', 1),
+('CU1640759924238', 'Trương Tấn Đạt', '2024-01-29', 3050, 'datzero9@gmail.com', 'TP.HCM', '0901121601', 1),
+('CU1640760118459', 'Nguyễn Thị Thu', '2024-02-29', 800, 'thusgu@gmail.com', 'Hà Nội', '0312100911', 1),
+('CU1640760118460', 'Nguyễn Ánh Ngọc', '2024-03-05', 400, 'ngocnguyen@gmail.com', 'TP.HCM', '0821077113', 1),
+('CU1640760118461', 'Lê Thị Huệ', '2024-03-10', 350, 'huehoa1203@gmail.com', 'TP.HCM', '0331560911', 1);
 
 -- --------------------------------------------------------
 
@@ -170,10 +171,10 @@ CREATE TABLE `tbl_employee` (
 
 INSERT INTO `tbl_employee` (`id_employee`, `id_position`, `fullname`, `birthday`, `address`, `phone`, `email`, `image`, `cmnd`, `gender`) VALUES
 ('EM00', 'ad', 'Admin', '2000-01-01', 'TP.HCM', '0313565607', 'admin20@gmail.com', 'abc', '00000000', 'Nam'),
-('EM01', 'p1', 'Xuân Thắng', '2004-06-22', 'Bình Thuận', '0388121009', 'xuanthang247.0404@gmail.com', 'abc', '261566121', 'Nam'),
+('EM01', 'p1', 'Xuân Thắng', '2004-06-22', 'Bình Thuận', '0388121009', 'xuanthang247@gmail.com', 'abc', '261566121', 'Nam'),
 ('EM02', 'p3', 'Gia Hào', '2004-04-04', 'Đồng Nai', '0933814691', 'giahao2k4@gmail.com', 'abc', '261566951', 'Nam'),
 ('EM03', 'p3', 'Duy Khương', '2004-07-29', 'An Giang', '0912312444', 'duykhuong@gmail.com', 'abc', '102111343', 'Nam'),
-('EM04', 'p2', 'Minh Hữu', '2004-07-21', 'Lâm Đồng', '0869160455', 'minhhhu@gmail.com', 'abc', '450123100', 'Nam');
+('EM04', 'p2', 'Hữu Minh', '2004-07-21', 'Lâm Đồng', '0869160455', 'hhuminh@gmail.com', 'abc', '450123100', 'Nam');
 
 -- --------------------------------------------------------
 
@@ -388,7 +389,7 @@ CREATE TABLE `tbl_product` (
   `quantity` int(11) NOT NULL,
   `price` float DEFAULT NULL,
   `image` varchar(100) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 1
+  `status` TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -422,9 +423,9 @@ CREATE TABLE `tbl_product_sale` (
 --
 
 INSERT INTO `tbl_product_sale` (`id_product`, `salepercent`, `startdate`, `enddate`) VALUES
-('PR1640619150209', 0.1, '2024-01-26', '2024-04-01'),
-('PR1640621183186', 0.2, '2024-04-10', '2024-04-15'),
-('PR1640942292840', 0.3, '2024-04-20', '2024-04-22');
+('PR1640619150209', 0.1, '2024-05-01', '2024-05-25'),
+('PR1640621183186', 0.2, '2024-05-10', '2024-05-25'),
+('PR1640942292840', 0.3, '2024-05-10', '2024-05-22');
 
 -- --------------------------------------------------------
 
@@ -435,20 +436,21 @@ INSERT INTO `tbl_product_sale` (`id_product`, `salepercent`, `startdate`, `endda
 CREATE TABLE `tbl_supplier` (
   `id_supplier` varchar(50) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `address` varchar(100) NOT NULL
+  `address` varchar(100) NOT NULL,
+  `status` TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_supplier`
 --
 
-INSERT INTO `tbl_supplier` (`id_supplier`, `name`, `address`) VALUES
-('SU1696419239320', 'Công ty Cổ Phần May Phú Thịnh', '13A, Tống Văn Trân, Phường 5, Quận 11 TP. Hồ Chí Minh'),
-('SU1696419239321', 'Công ty TNHH May Trần Trúc', '292 - 294 Nguyễn Văn Luông, P. 12, Q. 6, TP. Hồ Chí Minh'),
-('SU1696419239322', 'Tập Đoàn Dệt May Việt Nam', 'Số 10 Nguyễn Huệ, Q. 1, TP. Hồ Chí Minh'),
-('SU1696419239323', 'Việt Hùng - Cơ Sở May Việt Hùng', '2385/87/21 Phạm Thế Hiển, P. 6, Q. 8, TP. Hồ Chí Minh'),
-('SU1696419239324', 'Xưởng May Mặc Kim Hải', 'Số 725/3B, Khóm Tây Khánh 5, P. Mỹ Hòa, TP. Long Xuyên, An Giang'),
-('SU1696419239325', 'Công Ty TNHH MTV Dệt May Phương Lan', 'Thôn Vĩnh Trị, Xã Yên Trị, Huyện ý Yên, Nam Định');
+INSERT INTO `tbl_supplier` (`id_supplier`, `name`, `address`, `status`) VALUES
+('SU1696419239320', 'Công ty Cổ Phần May Phú Thịnh', '13A, Tống Văn Trân, Phường 5, Quận 11 TP. Hồ Chí Minh',1),
+('SU1696419239321', 'Công ty TNHH May Trần Trúc', '292 - 294 Nguyễn Văn Luông, P. 12, Q. 6, TP. Hồ Chí Minh',1),
+('SU1696419239322', 'Tập Đoàn Dệt May Việt Nam', 'Số 10 Nguyễn Huệ, Q. 1, TP. Hồ Chí Minh',1),
+('SU1696419239323', 'Việt Hùng - Cơ Sở May Việt Hùng', '2385/87/21 Phạm Thế Hiển, P. 6, Q. 8, TP. Hồ Chí Minh',1),
+('SU1696419239324', 'Xưởng May Mặc Kim Hải', 'Số 725/3B, Khóm Tây Khánh 5, P. Mỹ Hòa, TP. Long Xuyên, An Giang',1),
+('SU1696419239325', 'Công Ty TNHH MTV Dệt May Phương Lan', 'Thôn Vĩnh Trị, Xã Yên Trị, Huyện ý Yên, Nam Định',1);
 
 -- --------------------------------------------------------
 
@@ -459,18 +461,19 @@ INSERT INTO `tbl_supplier` (`id_supplier`, `name`, `address`) VALUES
 CREATE TABLE `tbl_voucher` (
   `id_voucher` varchar(50) NOT NULL,
   `code` varchar(10) NOT NULL,
-  `discountpercent` float NOT NULL,
+  `discountpercent` int NOT NULL,
   `startdate` date NOT NULL,
-  `enddate` date NOT NULL
+  `enddate` date NOT NULL,
+  `status` TINYINT(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `tbl_voucher`
 --
 
-INSERT INTO `tbl_voucher` (`id_voucher`, `code`, `discountpercent`, `startdate`, `enddate`) VALUES
-('VC1640534596143', 'Null', 0, '2024-01-01', '2024-12-31'),
-('VC1640534625092', 'UuDai', 0.2, '2024-04-01', '2024-05-30');
+INSERT INTO `tbl_voucher` (`id_voucher`, `code`, `discountpercent`, `startdate`, `enddate`,`status`) VALUES
+('VC1640534596143', 'Null', 0, '2024-01-01', '2024-12-31',1),
+('VC1640534625092', 'UuDai', 20, '2024-04-01', '2024-05-30',1);
 
 -- --------------------------------------------------------
 
@@ -492,12 +495,12 @@ CREATE TABLE `tbl_warehousereceipt` (
 
 INSERT INTO `tbl_warehousereceipt` (`id_warehousereceipt`, `id_supplier`, `id_employee`, `date`, `totalprice`) VALUES
 ('WA1640619120579', 'SU1696419239320', 'EM01', '2024-01-16 17:00:00', 12500000),
-('WA1640619837606', 'SU1696419239320', 'EM02', '2024-01-16 17:00:00', 1100000),
-('WA1640621144981', 'SU1696419239321', 'EM03', '2024-02-16 17:00:00', 19500000),
+('WA1640619837606', 'SU1696419239320', 'EM01', '2024-01-16 17:00:00', 1100000),
+('WA1640621144981', 'SU1696419239321', 'EM04', '2024-02-16 17:00:00', 19500000),
 ('WA1640934393665', 'SU1696419239321', 'EM04', '2024-01-20 17:00:00', 5000000),
 ('WA1640942260967', 'SU1696419239322', 'EM01', '2024-03-20 17:00:00', 1000000),
-('WA1640942260976', 'SU1696419239322', 'EM02', '2024-02-21 17:00:00', 1200000),
-('WA1640942260977', 'SU1696419239323', 'EM03', '2024-01-21 17:00:00', 2200000),
+('WA1640942260976', 'SU1696419239322', 'EM04', '2024-02-21 17:00:00', 1200000),
+('WA1640942260977', 'SU1696419239323', 'EM04', '2024-01-21 17:00:00', 2200000),
 ('WA1640942260978', 'SU1696419239324', 'EM04', '2024-01-21 17:00:00', 1500000);
 
 -- --------------------------------------------------------

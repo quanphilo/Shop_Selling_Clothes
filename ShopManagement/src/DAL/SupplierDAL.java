@@ -13,7 +13,7 @@ public class SupplierDAL {
 	public Vector<SupplierDTO> getSuppliers(){
 		Vector<SupplierDTO> listSupplier = new Vector<SupplierDTO>();
 		try {
-			String sql = "SELECT * FROM tbl_supplier";
+			String sql = "SELECT * FROM tbl_supplier where status = 1";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
 			rs = pstm.executeQuery();
@@ -38,7 +38,7 @@ public class SupplierDAL {
 	public SupplierDTO getSupplierById(String id_supplier) {
 		SupplierDTO supplierDTO = null;
 		try {
-			String sql = "SELECT * FROM tbl_supplier WHERE `id_supplier` = ?";
+			String sql = "SELECT * FROM tbl_supplier WHERE status = 1 AND `id_supplier` = ?";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, id_supplier);
@@ -110,34 +110,36 @@ public class SupplierDAL {
 		return kq;
 	}
 	
-	public int delete(String id_supplier) {
-		int kq = 0;
-		try {
-			String sql = "DELETE FROM tbl_supplier WHERE `id_supplier` = ?";
-			con = JDBCUtil.getConnection();
-			pstm = con.prepareStatement(sql);
-			pstm.setString(1, id_supplier);
-			kq = pstm.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				pstm.close();
-				con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return kq;
-	}
+        public int delete(String id_supplier, int status) {
+            int kq = 0;
+            try {
+                String sql = "UPDATE tbl_supplier SET status = ? WHERE id_supplier = ?";
+                con = JDBCUtil.getConnection();
+                pstm = con.prepareStatement(sql);
+                pstm.setInt(1, status);
+                pstm.setString(2, id_supplier);
+                kq = pstm.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    pstm.close();
+                    con.close();
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+            return kq;
+        }
 
-        public Vector<SupplierDTO> searchSuppliersByName(String searchText) {
+        public Vector<SupplierDTO> searchSuppliers(String searchText) {
             Vector<SupplierDTO> filteredSuppliers = new Vector<>();
             try {
-                String sql = "SELECT * FROM tbl_supplier WHERE name LIKE ?";
+                String sql = "SELECT * FROM tbl_supplier WHERE status = 1 AND (id_supplier LIKE ? or name LIKE ?)";
                 con = JDBCUtil.getConnection();
                 pstm = con.prepareStatement(sql);
                 pstm.setString(1, "%" + searchText + "%");
+                pstm.setString(2, "%" + searchText + "%");
                 rs = pstm.executeQuery();
                 while (rs.next()) {
                     SupplierDTO supplierDTO = new SupplierDTO(rs.getString("id_supplier"), rs.getString("name"), rs.getString("address"));

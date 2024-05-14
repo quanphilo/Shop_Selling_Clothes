@@ -8,8 +8,8 @@ import DAL.ProductDAL;
 import DTO.ProductDTO;
 
 public class ProductBLL {
-  private ProductDAL productDAL = new ProductDAL();
-	ReadWriteFile readWriteFile = new ReadWriteFile();
+    private ProductDAL productDAL = new ProductDAL();
+    ReadWriteFile readWriteFile = new ReadWriteFile();
 
   public Vector<ProductDTO> getProducts() {
     Vector<ProductDTO> listProduct = productDAL.getProducts();
@@ -37,6 +37,5 @@ public class ProductBLL {
   public int  writeExcel(Vector<Vector<String>> listObjectData, Vector<String> header) {
 	return readWriteFile.writeExcel(listObjectData, header);
   }
-
 
 }

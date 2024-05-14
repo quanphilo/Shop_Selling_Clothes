@@ -81,7 +81,7 @@ public class AddWarehouseReceipDialog extends JDialog {
 		getContentPane().setLayout(null);
 
 		JPanel pnWarehouse = new JPanel();
-		pnWarehouse.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Phi\u1EBFu nh\u1EADp",
+		pnWarehouse.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Phiếu nhập",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnWarehouse.setBounds(387, 40, 427, 371);
 		getContentPane().add(pnWarehouse);
@@ -148,11 +148,12 @@ public class AddWarehouseReceipDialog extends JDialog {
 		txtDate = new JTextField(sdf.format(date));
 		txtDate.setOpaque(false);
 		txtDate.setColumns(10);
+                txtDate.setEditable(false);
 		txtDate.setBounds(85, 81, 125, 20);
 		pnWareInfos.add(txtDate);
 
 		JPanel pnWareTable = new JPanel();
-		pnWareTable.setBorder(new TitledBorder(null, "Chi ti\u1EBFt phi\u1EBFu nh\u1EADp", TitledBorder.LEADING,
+		pnWareTable.setBorder(new TitledBorder(null, "Chi tiết phiếu nhập", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 100, 0)));
 		pnWareTable.setBounds(4, 146, 430, 169);
 		pnWarehouse.add(pnWareTable);
@@ -203,7 +204,7 @@ public class AddWarehouseReceipDialog extends JDialog {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(null, "Th\u00F4ng tin s\u1EA3n ph\u1EA9m", TitledBorder.LEADING,
+		panel.setBorder(new TitledBorder(null, "Thông tin sản phẩm", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel.setBounds(-6, 0, 380, 311);
 		pnDetails.add(panel);
@@ -219,7 +220,7 @@ public class AddWarehouseReceipDialog extends JDialog {
 		txtProductQuantity.setOpaque(false);
 		txtProductQuantity.setColumns(10);
 		txtProductQuantity.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"S\u1ED1 l\u01B0\u1EE3ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Số lượng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductQuantity.setBounds(296, 244, 72, 44);
 		panel.add(txtProductQuantity);
 
@@ -227,7 +228,7 @@ public class AddWarehouseReceipDialog extends JDialog {
 		txtProductName.setOpaque(false);
 		txtProductName.setColumns(10);
 		txtProductName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"T\u00EAn s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Tên sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductName.setBounds(158, 59, 210, 44);
 		panel.add(txtProductName);
 
@@ -235,7 +236,7 @@ public class AddWarehouseReceipDialog extends JDialog {
 		txtPriceProduct.setOpaque(false);
 		txtPriceProduct.setColumns(10);
 		txtPriceProduct.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"Gi\u00E1 nh\u1EADp (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Giá nhập (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtPriceProduct.setBounds(158, 244, 136, 44);
 		panel.add(txtPriceProduct);
 
@@ -243,7 +244,7 @@ public class AddWarehouseReceipDialog extends JDialog {
 		txtProductBrand.setOpaque(false);
 		txtProductBrand.setColumns(10);
 		txtProductBrand.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"Th\u01B0\u01A1ng hi\u1EC7u", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Thương hiệu", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductBrand.setBounds(158, 125, 103, 44);
 		panel.add(txtProductBrand);
 

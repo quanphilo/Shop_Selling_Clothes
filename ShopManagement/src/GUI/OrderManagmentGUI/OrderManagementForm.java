@@ -63,7 +63,7 @@ public class OrderManagementForm extends JPanel {
 		JPanel pnWarehouse = new JPanel();
 		pnWarehouse.setLayout(null);
 		pnWarehouse.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch h\u00F3a \u0111\u01A1n",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách hoá đơn",
 						TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnWarehouse.setBounds(383, 44, 443, 446);
 		add(pnWarehouse);
@@ -101,7 +101,7 @@ public class OrderManagementForm extends JPanel {
 		pnWarehouse.add(pnFillterDate);
 		pnFillterDate.setLayout(null);
 
-		// Tu ngay
+		// Từ ngày
 		JPanel pnTuNgay = new JPanel();
 		pnTuNgay.setBounds(90, 10, 155, 25);
 		pnFillterDate.add(pnTuNgay);
@@ -109,7 +109,7 @@ public class OrderManagementForm extends JPanel {
 		datePickerStart = new JDatePickerImpl(datePanelStart);
 		pnTuNgay.add(datePickerStart);
 
-		// Den ngay
+		// Đến ngày
 		JPanel pnDenNgay = new JPanel();
 		pnDenNgay.setBounds(90, 45, 155, 25);
 		pnFillterDate.add(pnDenNgay);
@@ -143,7 +143,7 @@ public class OrderManagementForm extends JPanel {
 		pnFillterDate.add(btnExportExcel);
 
 		JPanel pnDetail = new JPanel();
-		pnDetail.setBorder(new TitledBorder(null, "Chi ti\u1EBFt h\u00F3a \u0111\u01A1n", TitledBorder.CENTER,
+		pnDetail.setBorder(new TitledBorder(null, "Chi tiết hoá đơn", TitledBorder.CENTER,
 				TitledBorder.TOP, null, new Color(0, 128, 0)));
 		pnDetail.setBounds(10, 44, 361, 446);
 		add(pnDetail);
@@ -152,7 +152,7 @@ public class OrderManagementForm extends JPanel {
 		txt_EmpId = new JTextField();
 		txt_EmpId.setOpaque(false);
 		txt_EmpId.setColumns(10);
-		txt_EmpId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "M\u00E3 nh\u00E2n vi\u00EAn",
+		txt_EmpId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Mã nhân viên",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txt_EmpId.setBounds(12, 71, 184, 35);
                 txt_EmpId.setEditable(false);
@@ -171,7 +171,7 @@ public class OrderManagementForm extends JPanel {
 		txt_OrderId.setOpaque(false);
 		txt_OrderId.setColumns(10);
 		txt_OrderId
-				.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "M\u00E3 h\u00F3a \u0111\u01A1n",
+				.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Mã hoá đơn",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txt_OrderId.setBounds(12, 26, 184, 35);
                 txt_OrderId.setEditable(false);
@@ -180,7 +180,7 @@ public class OrderManagementForm extends JPanel {
 		txt_NgayLap = new JTextField();
 		txt_NgayLap.setOpaque(false);
 		txt_NgayLap.setColumns(10);
-		txt_NgayLap.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ng\u00E0y l\u1EADp",
+		txt_NgayLap.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ngày lập",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txt_NgayLap.setBounds(211, 26, 139, 35);
                 txt_NgayLap.setEditable(false);
@@ -189,7 +189,7 @@ public class OrderManagementForm extends JPanel {
 		txt_CusId = new JTextField();
 		txt_CusId.setOpaque(false);
 		txt_CusId.setColumns(10);
-		txt_CusId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "M\u00E3 kh\u00E1ch h\u00E0ng",
+		txt_CusId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Mã khách hàng",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txt_CusId.setBounds(12, 118, 184, 35);
                 txt_CusId.setEditable(false);
@@ -198,14 +198,14 @@ public class OrderManagementForm extends JPanel {
 		txt_Total = new JTextField();
 		txt_Total.setOpaque(false);
 		txt_Total.setColumns(10);
-		txt_Total.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "T\u1ED5ng ti\u1EC1n (\u0111)",
+		txt_Total.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tổng tiền (đ)",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txt_Total.setBounds(211, 118, 139, 35);
                 txt_Total.setEditable(false);
 		pnDetail.add(txt_Total);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Danh s\u00E1ch s\u1EA3n ph\u1EA9m", TitledBorder.LEADING,
+		panel.setBorder(new TitledBorder(null, "Danh sách sản phẩm", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel.setBounds(12, 222, 338, 212);
 		pnDetail.add(panel);
@@ -221,7 +221,7 @@ public class OrderManagementForm extends JPanel {
 		txt_CusName.setOpaque(false);
 		txt_CusName.setColumns(10);
 		txt_CusName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"T\u00EAn kh\u00E1ch h\u00E0ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Tên khách hàng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txt_CusName.setBounds(12, 161, 184, 35);
                 txt_CusName.setEditable(false);
 		pnDetail.add(txt_CusName);
@@ -322,7 +322,7 @@ public class OrderManagementForm extends JPanel {
 		}
 
 		if (orderBLL.writeExcelForDetail(listObjectData, header, file) == 0) {
-			System.out.println("Loi");
+			System.out.println("Lỗi");
 		}
 	}
 	

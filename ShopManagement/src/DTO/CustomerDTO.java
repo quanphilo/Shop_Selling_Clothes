@@ -37,7 +37,4 @@ public class CustomerDTO extends PersonDTO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
-
-	
-
 }

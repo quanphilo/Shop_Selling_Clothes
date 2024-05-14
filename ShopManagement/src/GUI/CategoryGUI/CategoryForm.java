@@ -127,7 +127,7 @@ public class CategoryForm extends JPanel {
 		pnAction.add(lblTnNv);
 
 		panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Danh s\u00E1ch danh m\u1EE5c l\u1EDBn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(46, 139, 87)));
+		panel.setBorder(new TitledBorder(null, "Danh sách danh mục cha", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(46, 139, 87)));
 		panel.setBounds(19, 118, 371, 197);
 		pnAction.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
@@ -177,7 +177,7 @@ public class CategoryForm extends JPanel {
 		
 
 		panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "Danh s\u00E1ch danh m\u1EE5c con", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(46, 139, 87)));
+		panel_1.setBorder(new TitledBorder(null, "Danh sách danh mục con", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(46, 139, 87)));
 		panel_1.setBounds(32, 130, 358, 210);
 		pnOptions.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));

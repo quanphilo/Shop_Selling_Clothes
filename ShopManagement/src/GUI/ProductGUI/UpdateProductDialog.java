@@ -81,7 +81,7 @@ public class UpdateProductDialog extends JDialog {
 		JPanel panel = new JPanel();
 		getContentPane().add(panel);
 		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin s\u1EA3n ph\u1EA9m",
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin sản phẩm",
 
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		image = new JLabel("");
@@ -93,7 +93,7 @@ public class UpdateProductDialog extends JDialog {
 		txtProductId.setOpaque(false);
 		txtProductId.setEditable(false);
 		txtProductId.setColumns(10);
-		txtProductId.setBorder(new TitledBorder(null, "M\u00E3 s\u1EA3n ph\u1EA9m", TitledBorder.LEADING,
+		txtProductId.setBorder(new TitledBorder(null, "Mã sản phẩm", TitledBorder.LEADING,
 
 				TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductId.setBounds(217, 20, 234, 35);
@@ -103,8 +103,8 @@ public class UpdateProductDialog extends JDialog {
 		txtProductQuantity.setOpaque(false);
 		txtProductQuantity.setColumns(10);
 		txtProductQuantity.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-
-				"S\u1ED1 l\u01B0\u1EE3ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+                        
+				"Số lượng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductQuantity.setBounds(267, 230, 184, 35);
 		panel.add(txtProductQuantity);
 
@@ -113,14 +113,14 @@ public class UpdateProductDialog extends JDialog {
 		txtProductName.setColumns(10);
 		txtProductName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
 
-				"T\u00EAn s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Tên sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductName.setBounds(218, 60, 233, 35);
 		panel.add(txtProductName);
 
 		txtSellPrice = new JTextField();
 		txtSellPrice.setOpaque(false);
 		txtSellPrice.setColumns(10);
-		txtSellPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 b\u00E1n (\u0111)",
+		txtSellPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá bán (đ)",
 
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtSellPrice.setBounds(217, 183, 234, 35);
@@ -129,7 +129,7 @@ public class UpdateProductDialog extends JDialog {
 		txtBrandName = new JTextField();
 		txtBrandName.setOpaque(false);
 		txtBrandName.setColumns(10);
-		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u01B0\u01A1ng hi\u1EC7u",
+		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thương hiệu",
 
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtBrandName.setBounds(51, 230, 128, 35);
@@ -174,14 +174,14 @@ public class UpdateProductDialog extends JDialog {
 		txtWarehousePrice.setColumns(10);
 		txtWarehousePrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
 
-				"Gi\u00E1 nh\u1EADp (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Giá nhập (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtWarehousePrice.setBounds(218, 141, 233, 35);
 		panel.add(txtWarehousePrice);
 
 		txtCategoryName = new JTextField();
 		txtCategoryName.setOpaque(false);
 		txtCategoryName.setColumns(10);
-		txtCategoryName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh m\u1EE5c",
+		txtCategoryName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh mục",
 
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtCategoryName.setBounds(218, 100, 169, 35);
@@ -198,7 +198,7 @@ public class UpdateProductDialog extends JDialog {
 		txtSalePrice.setForeground(new Color(220, 20, 60));
 		txtSalePrice.setColumns(10);
 		txtSalePrice.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 khuy\u1EBFn m\u00E3i (\u0111)",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá khuyến mãi (đ)",
 
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(220, 20, 60)));
 		txtSalePrice.setBounds(244, 301, 207, 35);

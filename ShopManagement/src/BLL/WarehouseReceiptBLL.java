@@ -9,8 +9,7 @@ import DTO.WarehouseReceiptDTO;
 
 public class WarehouseReceiptBLL {
     WarehouseReceiptDAL warehouseReceiptDAL = new WarehouseReceiptDAL();
-	ReadWriteFile readWriteFile = new ReadWriteFile();
-
+    ReadWriteFile readWriteFile = new ReadWriteFile();
 
     public Vector<WarehouseReceiptDTO> getWarehouseReceipts() {
         Vector<WarehouseReceiptDTO> warehouseRecriptList = warehouseReceiptDAL.getWarehouseReceipts();

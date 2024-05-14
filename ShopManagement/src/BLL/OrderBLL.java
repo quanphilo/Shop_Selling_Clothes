@@ -44,7 +44,5 @@ public class OrderBLL {
     
     public int writeExcelForDetail(Vector<Vector<String>> listObjectData, Vector<String> header, File file) {
   		return readWriteFile.writeExcelForDetail(listObjectData, header, file);
-  	}
-    
-    
+  	}    
 }

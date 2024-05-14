@@ -86,7 +86,7 @@ public class PositionAndPermissionForm extends JPanel {
         pnAction.add(lblTnNv);
 
         panel = new JPanel();
-        panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch ch\u1EE9c v\u1EE5",
+        panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách chức vụ",
                 TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
         panel.setBounds(25, 117, 383, 321);
         pnAction.add(panel);

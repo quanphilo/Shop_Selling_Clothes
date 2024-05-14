@@ -41,8 +41,4 @@ public class AccountBLL {
         int kq = accountDAL.active(account);
         return kq;
     }
-
-    public AccountDTO login(AccountDTO accountDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

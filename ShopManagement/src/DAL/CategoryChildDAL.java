@@ -62,8 +62,6 @@ public class CategoryChildDAL {
 		return listCategoryChild;
 	}
 	
-	
-	
 	public CategoryChildDTO getCategoryChildById(String id_categorychild) {
 		CategoryChildDTO categorychildDTO = null;
 		try {

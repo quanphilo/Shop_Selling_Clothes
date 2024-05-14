@@ -16,14 +16,14 @@ public class VoucherDAL {
 	public Vector<VoucherDTO> getVouchers(){
 		Vector<VoucherDTO> listVoucher = new Vector<VoucherDTO>();
 		try {
-			String sql = "SELECT * FROM `tbl_voucher`";
+			String sql = "SELECT * FROM `tbl_voucher` where status = 1";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				VoucherDTO voucherDTO = new VoucherDTO(rs.getString("id_voucher"), 
 				rs.getString("code"), 
-				rs.getFloat("discountpercent"),
+				rs.getInt("discountpercent"),
 				 rs.getDate("startdate"), 
 				 rs.getDate("enddate"));
 				listVoucher.add(voucherDTO);
@@ -46,14 +46,14 @@ public class VoucherDAL {
 	public VoucherDTO getVoucherById(String id_voucher) {
 		VoucherDTO voucherDTO = null;
 		try {
-			String sql = "SELECT * FROM tbl_voucher WHERE `id_voucher` = ?";
+			String sql = "SELECT * FROM tbl_voucher WHERE status = 1 AND `id_voucher` = ?";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, id_voucher);
 			rs = pstm.executeQuery();
 			if(rs.next()) {
 				voucherDTO = new VoucherDTO(
-							rs.getString("id_voucher"), rs.getString("code"), rs.getFloat("discountpercent"), rs.getDate("startdate"), rs.getDate("enddate")
+							rs.getString("id_voucher"), rs.getString("code"), rs.getInt("discountpercent"), rs.getDate("startdate"), rs.getDate("enddate")
 						);
 			}
 		} catch (Exception e) {
@@ -124,24 +124,25 @@ public class VoucherDAL {
 		return kq;
 	}
 	
-	public int delete(String id_voucher) {
-		int kq = 0;
-		try {
-			String sql = "DELETE FROM tbl_voucher WHERE `id_voucher` = ?";
-			con = JDBCUtil.getConnection();
-			pstm = con.prepareStatement(sql);
-			pstm.setString(1, id_voucher);
-			kq = pstm.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				pstm.close();
-				con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return kq;
-	}
+        public int delete(String id_voucher, int status) {
+            int kq = 0;
+            try {
+                String sql = "UPDATE tbl_voucher SET status = ? WHERE id_voucher = ?";
+                con = JDBCUtil.getConnection();
+                pstm = con.prepareStatement(sql);
+                pstm.setInt(1, status);
+                pstm.setString(2, id_voucher);
+                kq = pstm.executeUpdate();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    pstm.close();
+                    con.close();
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+            return kq;
+        }
 }

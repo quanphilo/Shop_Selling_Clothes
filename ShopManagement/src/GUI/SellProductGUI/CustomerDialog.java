@@ -93,7 +93,7 @@ public class CustomerDialog extends JDialog {
 		btnAccept.setVisible(false);
                 
                 txtSearch = new JTextField();
-                txtSearch.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tìm kiếm",
+                txtSearch.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tìm kiếm theo tên khách hàng",
                         TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
                 txtSearch.setBounds(12, 8, 217, 35);
                 pnAction.add(txtSearch); 
@@ -112,7 +112,7 @@ public class CustomerDialog extends JDialog {
 		pnInfos.setLayout(null);
 
 		txtId = new JTextField();
-		txtId.setBorder(new TitledBorder(null, "M\u00E3 kh\u00E1ch h\u00E0ng", TitledBorder.LEADING, TitledBorder.TOP,
+		txtId.setBorder(new TitledBorder(null, "Mã khách hàng", TitledBorder.LEADING, TitledBorder.TOP,
 				null, new Color(0, 128, 0)));
 		txtId.setEditable(false);
 		txtId.setColumns(10);
@@ -122,7 +122,7 @@ public class CustomerDialog extends JDialog {
 		txtName = new JTextField();
 		txtName.setEditable(false);
 		txtName.setColumns(10);
-		txtName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "T\u00EAn kh\u00E1ch h\u00E0ng",
+		txtName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tên khách hàng",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		txtName.setBounds(12, 60, 217, 35);
 		pnInfos.add(txtName);
@@ -130,7 +130,7 @@ public class CustomerDialog extends JDialog {
 		txtAddress = new JTextField();
 		txtAddress.setEditable(false);
 		txtAddress.setColumns(10);
-		txtAddress.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "\u0110\u1ECBa ch\u1EC9",
+		txtAddress.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Địa chỉ",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		txtAddress.setBounds(12, 100, 217, 35);
 		pnInfos.add(txtAddress);
@@ -147,7 +147,7 @@ public class CustomerDialog extends JDialog {
 		txtPhone.setEditable(false);
 		txtPhone.setColumns(10);
 		txtPhone.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Số điện thoại",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		txtPhone.setBounds(12, 180, 217, 35);
 		pnInfos.add(txtPhone);
@@ -155,14 +155,14 @@ public class CustomerDialog extends JDialog {
 		txtCreateDate = new JTextField();
 		txtCreateDate.setEditable(false);
 		txtCreateDate.setColumns(10);
-		txtCreateDate.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ng\u00E0y t\u1EA1o", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+		txtCreateDate.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ngày tạo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		txtCreateDate.setBounds(12, 220, 217, 35);
 		pnInfos.add(txtCreateDate);
 		
 		txtPoint = new JTextField();
 		txtPoint.setEditable(false);
 		txtPoint.setColumns(10);
-		txtPoint.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "\u0110i\u1EC3m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+		txtPoint.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Điểm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		txtPoint.setBounds(12, 260, 217, 35);
 		pnInfos.add(txtPoint);
                 
@@ -223,7 +223,6 @@ public class CustomerDialog extends JDialog {
 				btnAccept.setVisible(true);
 				btnAddNewCus.setEnabled(false);
 				txtCreateDate.setText(sdf.format(date));
-                                txtPoint.setEditable(false);
 				btnOk.setEnabled(false);
 			}
 		});

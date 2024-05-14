@@ -96,18 +96,31 @@ public final class LoginForm extends JFrame {
         cbxUser = new JComboBox();
         JComboBox<String> cbxUser = new JComboBox<>();
         cbxUser.setModel(new DefaultComboBoxModel<>(new String[]{"Quản lý", "Nhân viên kho", "Nhân viên kinh doanh", "Admin"}));
-        cbxUser.addActionListener((ActionEvent evt) -> {
-            loginUser = switch (cbxUser.getSelectedIndex()) {
-                case 0 -> "p1";
-                case 1 -> "p2";
-                case 2 -> "p3";
-                case 3 -> "ad";
-                default -> "p1";
-            };
-        });
+        cbxUser.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent evt) {
+            int selectedIndex = cbxUser.getSelectedIndex();
+            switch (selectedIndex) {
+                case 0:
+                    loginUser = "p1";
+                    break;
+                case 1:
+                    loginUser = "p2";
+                    break;
+                case 2:
+                    loginUser = "p3";
+                    break;
+                case 3:
+                    loginUser = "ad";
+                    break;
+                default:
+                    loginUser = "p1";
+                    break;
+            }
+        }
+    });
         cbxUser.setBounds(130, 20, 160, 30);
         pnInput.add(cbxUser);
-        //
 
         lblNewLabel = new JLabel("Tài khoản");
         lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
@@ -151,7 +164,7 @@ public final class LoginForm extends JFrame {
         pnContent.add(pnBtn);
         pnBtn.setLayout(null);
 
-        btnLogin = new JButton("\u0110\u0103ng nh\u1EADp");
+        btnLogin = new JButton("Đăng nhập");
         btnLogin.setForeground(new Color(0, 128, 0));
 
         btnLogin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

@@ -83,7 +83,7 @@ public class ProductForm extends JPanel {
 		setBounds(0, 0, 830, 490);
 
 		JPanel pnProduct = new JPanel();
-		pnProduct.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1EA3n ph\u1EA9m",
+		pnProduct.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Sản phẩm",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnProduct.setBounds(387, 40, 443, 450);
 		add(pnProduct);
@@ -91,7 +91,7 @@ public class ProductForm extends JPanel {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch s\u1EA3n ph\u1EA9m",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách sản phẩm",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		panel_1.setBounds(12, 185, 419, 220);
 		pnProduct.add(panel_1);
@@ -122,7 +122,7 @@ public class ProductForm extends JPanel {
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBorder(
-				new TitledBorder(null, "L\u1ECDc", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+				new TitledBorder(null, "Lọc", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		panel_3.setBounds(12, 29, 408, 136);
 		pnProduct.add(panel_3);
 
@@ -186,7 +186,7 @@ public class ProductForm extends JPanel {
 		pnDetails.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin s\u1EA3n ph\u1EA9m",
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin sản phẩm",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel.setBounds(2, 8, 380, 407);
 		pnDetails.add(panel);
@@ -201,7 +201,7 @@ public class ProductForm extends JPanel {
 		txtProductId = new JTextField();
 		txtProductId.setEditable(false);
 		txtProductId.setOpaque(false);
-		txtProductId.setBorder(new TitledBorder(null, "M\u00E3 s\u1EA3n ph\u1EA9m", TitledBorder.LEADING,
+		txtProductId.setBorder(new TitledBorder(null, "Mã sản phẩm", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductId.setBounds(157, 20, 211, 35);
 		panel.add(txtProductId);
@@ -211,7 +211,7 @@ public class ProductForm extends JPanel {
 		txtProductQuantity.setOpaque(false);
 		txtProductQuantity.setColumns(10);
 		txtProductQuantity.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"S\u1ED1 l\u01B0\u1EE3ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Số lượng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductQuantity.setBounds(207, 230, 161, 35);
 		panel.add(txtProductQuantity);
 
@@ -219,14 +219,14 @@ public class ProductForm extends JPanel {
 		txtProductName.setOpaque(false);
 		txtProductName.setColumns(10);
 		txtProductName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"T\u00EAn s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Tên sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductName.setBounds(158, 60, 210, 35);
 		panel.add(txtProductName);
 
 		txtSellPrice = new JTextField();
 		txtSellPrice.setOpaque(false);
 		txtSellPrice.setColumns(10);
-		txtSellPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 b\u00E1n (\u0111)",
+		txtSellPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá bán (đ)",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtSellPrice.setBounds(157, 183, 211, 35);
 		panel.add(txtSellPrice);
@@ -234,7 +234,7 @@ public class ProductForm extends JPanel {
 		txtBrandName = new JTextField();
 		txtBrandName.setOpaque(false);
 		txtBrandName.setColumns(10);
-		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u01B0\u01A1ng hi\u1EC7u",
+		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thương hiệu",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtBrandName.setBounds(12, 230, 128, 35);
 		panel.add(txtBrandName);
@@ -276,14 +276,14 @@ public class ProductForm extends JPanel {
 		txtWarehousePrice.setOpaque(false);
 		txtWarehousePrice.setColumns(10);
 		txtWarehousePrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"Gi\u00E1 nh\u1EADp (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Giá nhập (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtWarehousePrice.setBounds(158, 141, 210, 35);
 		panel.add(txtWarehousePrice);
 
 		txtCategoryName = new JTextField();
 		txtCategoryName.setOpaque(false);
 		txtCategoryName.setColumns(10);
-		txtCategoryName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh m\u1EE5c",
+		txtCategoryName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh mục",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtCategoryName.setBounds(158, 100, 145, 35);
 		panel.add(txtCategoryName);
@@ -300,7 +300,7 @@ public class ProductForm extends JPanel {
 		txtSalePrice.setColumns(10);
 		txtSalePrice.setEditable(false);
 		txtSalePrice.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 khuy\u1EBFn m\u00E3i (\u0111)",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá khuyến mãi (đ)",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(220, 20, 60)));
 		txtSalePrice.setBounds(195, 273, 173, 35);
 		panel.add(txtSalePrice);
@@ -558,7 +558,8 @@ public class ProductForm extends JPanel {
 		if (checksale == 1) {
 			ProductSaleDTO productSaleDTO = bookSaleBLL.getProductSaleByProductId(productDTO.getId_product());
 			radioSale.setSelected(true);
-			txtDiscountPercent.setText(String.valueOf(productSaleDTO.getDiscountPercent() * 100));
+                        double discountPercent = productSaleDTO.getDiscountPercent() * 100;
+                        txtDiscountPercent.setText(String.format("%.1f", discountPercent));
 			txtSalePrice.setText(String.valueOf(productDTO.getPrice() * (1 - productSaleDTO.getDiscountPercent())));
 			lblStartDate.setText(sdf.format(productSaleDTO.getStartdate()));
 			lblEndDate.setText(sdf.format(productSaleDTO.getEnddate()));

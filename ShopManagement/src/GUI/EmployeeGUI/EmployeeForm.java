@@ -73,7 +73,7 @@ public class EmployeeForm extends JPanel {
 		JPanel pnOrder = new JPanel();
 		pnOrder.setLayout(null);
 		pnOrder.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch nh\u00E2n vi\u00EAn",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách nhân viên",
 						TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnOrder.setBounds(400, 40, 429, 423);
 		add(pnOrder);
@@ -152,7 +152,7 @@ public class EmployeeForm extends JPanel {
 		pnOrder.add(btnFilter);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin nh\u00E2n vi\u00EAn",
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin nhân viên",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		panel.setBounds(10, 40, 378, 423);
 		add(panel);
@@ -162,7 +162,7 @@ public class EmployeeForm extends JPanel {
 		txtIdEmployee.setOpaque(false);
 		txtIdEmployee.setColumns(10);
 		txtIdEmployee.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"M\u00E3 nh\u00E2n vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Mã nhân viên", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtIdEmployee.setBounds(12, 24, 188, 35);
                 txtIdEmployee.setEditable(false);
 		panel.add(txtIdEmployee);
@@ -171,7 +171,7 @@ public class EmployeeForm extends JPanel {
 		txtEmployeeName.setOpaque(false);
 		txtEmployeeName.setColumns(10);
 		txtEmployeeName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-				"T\u00EAn nh\u00E2n vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+				"Tên nhân viên", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtEmployeeName.setBounds(12, 80, 188, 35);
                 txtEmployeeName.setEditable(false);
 		panel.add(txtEmployeeName);
@@ -198,7 +198,7 @@ public class EmployeeForm extends JPanel {
 		txtPhone.setOpaque(false);
 		txtPhone.setColumns(10);
 		txtPhone.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Số điện thoại",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtPhone.setBounds(222, 136, 148, 35);
                 txtPhone.setEditable(false);
@@ -207,7 +207,7 @@ public class EmployeeForm extends JPanel {
 		txtAddress = new JTextField();
 		txtAddress.setOpaque(false);
 		txtAddress.setColumns(10);
-		txtAddress.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "\u0110\u1ECBa ch\u1EC9",
+		txtAddress.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Địa chỉ",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtAddress.setBounds(12, 190, 188, 35);
                 txtAddress.setEditable(false);
@@ -361,7 +361,7 @@ public class EmployeeForm extends JPanel {
 									String.valueOf(employeeDTO.getBirthday()).isBlank() ||
 									employeeDTO.getPhone().isBlank() ||
 									employeeDTO.getCmnd().isBlank()) {
-								JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
+								JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
 								return;
 							}
 
@@ -375,7 +375,7 @@ public class EmployeeForm extends JPanel {
 									String.valueOf(txtPassword.getPassword()),
 									status);
 							if (accountDTO.getUsename().isBlank() || String.valueOf(accountDTO.getPassword()).isBlank()) {
-								JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
+								JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
 								return;
 							}
 							int kq = accountBLL.insert(accountDTO);
@@ -390,7 +390,7 @@ public class EmployeeForm extends JPanel {
 									refreshComponents();
 									enableButtoninEmployee();
 								} else if (kq1 == 2) {
-									JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
+									JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
 								} else {
 									JOptionPane.showMessageDialog(null, "Thêm thất bại!");
 								}
@@ -460,14 +460,14 @@ public class EmployeeForm extends JPanel {
 									String.valueOf(employeeDTO.getBirthday()).isBlank() ||
 									employeeDTO.getPhone().isBlank() ||
 									employeeDTO.getCmnd().isBlank()) {
-								JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
+								JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
 								return;
 							}
 							int kq = employeeBLL.update(employeeDTO);
 							if (kq == 1) {
 								AccountDTO accountDTO = new AccountDTO(txtIdEmployee.getText(), txtUsername.getText(), String.valueOf(txtPassword.getText()));
 								if (accountDTO.getUsename().isBlank() || String.valueOf(accountDTO.getPassword()).isBlank()) {
-									JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
+									JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
 									return;
 								}
 								if (radioActive.isSelected()) {
@@ -483,7 +483,7 @@ public class EmployeeForm extends JPanel {
 								refreshComponents();
 								enableButtoninEmployee();
 							} else if (kq == 2) {
-								JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
+								JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin!");
 							} else if (kq == 3) {
 								JOptionPane.showMessageDialog(null, "Thông tin không hợp lệ!");
 							} else if (kq == 4) {

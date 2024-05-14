@@ -117,7 +117,7 @@ public class SupplierAndBrandForm extends JPanel {
 		pnAction.add(lblTnNcc);
 		
 		panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch NCC", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách NCC", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		panel.setBounds(32, 135, 767, 252);
 		pnAction.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
@@ -181,7 +181,28 @@ public class SupplierAndBrandForm extends JPanel {
 				txtAddress.setText(supplierDTO.getAddress());
 			}
 		});
-		
+		btnSearchSupplier.addMouseListener(new MouseAdapter() {
+                        public void mouseClicked(MouseEvent e) {
+                            String searchText = txtSearchSupplier.getText().trim();
+                            if (searchText.isEmpty()) {
+                                JOptionPane.showMessageDialog(null, "Vui lòng nhập nội dung tìm kiếm.");
+                            } else {
+                                DefaultTableModel dfm = new DefaultTableModel();
+                                String[] header = {"Mã nhà cung cấp", "Tên nhà cung cấp", "Địa chỉ"};
+                                dfm.setColumnIdentifiers(header);
+
+                                Vector<SupplierDTO> filteredList = supplierBLL.searchSuppliers(searchText);
+                                for (SupplierDTO supplier : filteredList) {
+                                    String[] row = {
+                                        supplier.getId_supplier(), supplier.getName(), supplier.getAddress()
+                                    };
+                                    dfm.addRow(row);
+                                }
+                                tblSupplier.setModel(dfm);
+                            }
+                        }
+                    });                    
+                
 		// Xử lý tbl Supplier
 		btnAddSupplier.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -212,6 +233,7 @@ public class SupplierAndBrandForm extends JPanel {
 							if(kq == 1) {
 								JOptionPane.showMessageDialog(null, "Thêm thành công!");
 								txtSupplierName.setEditable(false);
+                                                                txtAddress.setEditable(false);
 								pnDetails.remove(btnConfirmSupplier);
 								loadTableSupplier();
 								refreshComponents();
@@ -269,6 +291,7 @@ public class SupplierAndBrandForm extends JPanel {
 							if(kq == 1) {
 								JOptionPane.showMessageDialog(null, "Sửa thành công!");
 								txtSupplierName.setEditable(false);
+                                                                txtAddress.setEditable(false);
 								pnDetails.remove(btnConfirmSupplier);
 								loadTableSupplier();
 								refreshComponents();
@@ -297,40 +320,28 @@ public class SupplierAndBrandForm extends JPanel {
                         }
                         int rs = JOptionPane.showConfirmDialog(null, "Xác nhận xóa nhà cung cấp!");
                         if (rs == 0) {
-                            String id_supplier = String.valueOf(tblSupplier.getValueAt(row, 0));
-                            int kq = supplierBLL.delete(id_supplier);
+                            String supplierId = String.valueOf(tblSupplier.getValueAt(row, 0));
+                            int kq = supplierBLL.delete(supplierId, 0);
                             if(kq == 1) {
                                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
-                                loadTableSupplier(); // Tải lại bảng sau khi xóa
-                            }else {
+                                removeSupplierFromTable(supplierId);
+                            } else {
                                 JOptionPane.showMessageDialog(null, "Xóa thất bại!");
                             }
                         }
                     }
                 });
-                btnSearchSupplier.addMouseListener(new MouseAdapter() {
-                   public void mouseClicked(MouseEvent e) {
-                       String searchText = txtSearchSupplier.getText().trim();
-                       if (searchText.isEmpty()) {
-                           JOptionPane.showMessageDialog(null, "Vui lòng nhập nội dung tìm kiếm.");
-                       } else {
-                           DefaultTableModel dfm = new DefaultTableModel();
-                           String[] header = {"Mã nhà cung cấp", "Tên nhà cung cấp", "Địa chỉ"};
-                           dfm.setColumnIdentifiers(header);
-
-                           Vector<SupplierDTO> filteredList = supplierBLL.searchSuppliersByName(searchText);
-                           for (SupplierDTO supplier : filteredList) {
-                               String[] row = {
-                                   supplier.getId_supplier(), supplier.getName(), supplier.getAddress()
-                               };
-                               dfm.addRow(row);
-                           }
-                           tblSupplier.setModel(dfm);
-                       }
-                   }
-               });
-
-        }	
+            }
+        // Phương thức để loại bỏ NCC ra khỏi bảng tblSupplier
+        private void removeSupplierFromTable(String supplierId) {
+                DefaultTableModel model = (DefaultTableModel) tblSupplier.getModel();
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    if (model.getValueAt(i, 0).equals(supplierId)) {
+                        model.removeRow(i);
+                        return;
+                    }
+                }                
+            }
 	public void refreshComponents() {
 		this.repaint();
 		this.revalidate();
@@ -347,7 +358,7 @@ public class SupplierAndBrandForm extends JPanel {
 	}
 
 	
-// Load Table Supplier
+        // Load Table Supplier
 	public void loadTableSupplier() {
 		DefaultTableModel dfm = new DefaultTableModel();
 		String[] header = {"Mã nhà cung cấp", "Tên nhà cung cấp", "Địa chỉ"};
@@ -363,19 +374,17 @@ public class SupplierAndBrandForm extends JPanel {
 		}
 		tblSupplier.setModel(dfm);
 	}
-// Load Table Supplier
-		public void loadTableBrand() {
-			DefaultTableModel dfm = new DefaultTableModel();
-			String[] header = {"Mã thương hiệu", "Tên thương hiệu"};
-			dfm.setColumnIdentifiers(header);
+	public void loadTableBrand() {
+		DefaultTableModel dfm = new DefaultTableModel();
+		String[] header = {"Mã thương hiệu", "Tên thương hiệu"};
+		dfm.setColumnIdentifiers(header);
 					
-			Vector<BrandDTO> listBrand = brandBLL.getBrands();
-			for(BrandDTO brandDTO : listBrand) {
-				String[] row = {
-						brandDTO.getId_brand(), brandDTO.getName()
-				};
-				dfm.addRow(row);
-
+		Vector<BrandDTO> listBrand = brandBLL.getBrands();
+		for(BrandDTO brandDTO : listBrand) {
+			String[] row = {
+					brandDTO.getId_brand(), brandDTO.getName()
+			};
+			dfm.addRow(row);
 			}
 		}
 }

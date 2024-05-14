@@ -5,7 +5,7 @@ import java.util.Date;
 public class VoucherDTO {
 	private String id_voucher;
 	private String code;
-	private float discountpercent;
+	private int discountpercent;
 	private Date startdate;
 	private Date enddate;
 
@@ -17,7 +17,7 @@ public class VoucherDTO {
 		this.id_voucher = id_voucher;
 	}
 
-	public VoucherDTO(String id_voucher, String code, float discountpercent, Date startdate, Date enddate) {
+	public VoucherDTO(String id_voucher, String code, int discountpercent, Date startdate, Date enddate) {
 		super();
 		this.id_voucher = id_voucher;
 		this.code = code;
@@ -42,11 +42,11 @@ public class VoucherDTO {
 		this.code = code;
 	}
 
-	public float getDiscountpercent() {
+	public int getDiscountpercent() {
 		return discountpercent;
 	}
 
-	public void setDiscountpercent(float discountpercent) {
+	public void setDiscountpercent(int discountpercent) {
 		this.discountpercent = discountpercent;
 	}
 

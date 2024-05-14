@@ -117,6 +117,4 @@ public class PermissionDAL {
 		}
 		return kq1;
 	}
-	
-
 }

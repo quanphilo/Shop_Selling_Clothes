@@ -67,8 +67,7 @@ public class AccountDAL {
 			
 		}
 		return accountDTO;
-	}
-//	
+	}	
 	// Return id_account (String) if login=true else return null Login = false;
 	public AccountDTO login(AccountDTO account, String position) {
 		AccountDTO accountDTO = null;
@@ -100,9 +99,7 @@ public class AccountDAL {
                             return accountDTO;
                         }
                         //
-                        
-			
-			
+                        				
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -212,7 +209,5 @@ public class AccountDAL {
 			}
 		}
 		return kq;
-	}
-	
-	
+	}		
 }

@@ -187,6 +187,4 @@ public class ProductDAL {
 		}
 		return list_id;
 	}
-	
-
 }

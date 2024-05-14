@@ -34,7 +34,6 @@ public class PostProductForm extends JPanel{
 	private JTextField txtDiscountPercent;
 	private JButton btnFindWarehouse;
 	
-	
 	public PostProductForm() {
 		initComponents();
 		addEvents();
@@ -46,7 +45,7 @@ public class PostProductForm extends JPanel{
 		setBounds(0, 0, 830, 490);
 		
 		JPanel pnWarehouse = new JPanel();
-		pnWarehouse.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Phi\u1EBFu nh\u1EADp", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		pnWarehouse.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Phiếu nhập", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnWarehouse.setBounds(387, 40, 443, 450);
 		add(pnWarehouse);
 		pnWarehouse.setLayout(null);
@@ -73,7 +72,7 @@ public class PostProductForm extends JPanel{
 		pnWarehouse.add(btnNewButton_2);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Chi ti\u1EBFt phi\u1EBFu nh\u1EADp", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		panel_1.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Chi tiết phiếu nhập", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		panel_1.setBounds(12, 207, 419, 229);
 		pnWarehouse.add(panel_1);
 		panel_1.setLayout(new BorderLayout(0, 0));
@@ -86,28 +85,28 @@ public class PostProductForm extends JPanel{
 		txtWarehouseId = new JTextField();
 		txtWarehouseId.setOpaque(false);
 		txtWarehouseId.setColumns(10);
-		txtWarehouseId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "M\u00E3 phi\u1EBFu nh\u1EADp", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtWarehouseId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Mã phiếu nhập", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtWarehouseId.setBounds(12, 61, 211, 35);
 		pnWarehouse.add(txtWarehouseId);
 		
 		txtDate = new JTextField();
 		txtDate.setOpaque(false);
 		txtDate.setColumns(10);
-		txtDate.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ng\u00E0y nh\u1EADp", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtDate.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ngày nhập", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtDate.setBounds(232, 61, 199, 35);
 		pnWarehouse.add(txtDate);
 		
 		txtEmployeeId = new JTextField();
 		txtEmployeeId.setOpaque(false);
 		txtEmployeeId.setColumns(10);
-		txtEmployeeId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "M\u00E3 nh\u00E2n vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtEmployeeId.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Mã nhân viên", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtEmployeeId.setBounds(12, 108, 211, 35);
 		pnWarehouse.add(txtEmployeeId);
 		
 		txtSupplier = new JTextField();
 		txtSupplier.setOpaque(false);
 		txtSupplier.setColumns(10);
-		txtSupplier.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Nh\u00E0 cung c\u1EA5p", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtSupplier.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Nhà cung cấp", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtSupplier.setBounds(232, 108, 199, 35);
 		pnWarehouse.add(txtSupplier);
 				
@@ -123,7 +122,7 @@ public class PostProductForm extends JPanel{
 		pnDetails.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin s\u1EA3n ph\u1EA9m t\u1ED3n kho", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin sản phẩm tồn kho", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel.setBounds(2, 8, 380, 240);
 		pnDetails.add(panel);
 		panel.setLayout(null);
@@ -136,7 +135,7 @@ public class PostProductForm extends JPanel{
 		
 		txtProductId = new JTextField();
 		txtProductId.setOpaque(false);
-		txtProductId.setBorder(new TitledBorder(null, "M\u00E3 s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtProductId.setBorder(new TitledBorder(null, "Mã sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductId.setBounds(157, 20, 211, 35);
 		panel.add(txtProductId);
 		txtProductId.setColumns(10);
@@ -144,41 +143,41 @@ public class PostProductForm extends JPanel{
 		txt = new JTextField();
 		txt.setOpaque(false);
 		txt.setColumns(10);
-		txt.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1ED1 l\u01B0\u1EE3ng nh\u1EADp", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txt.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Số lượng nhập", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txt.setBounds(157, 193, 210, 35);
 		panel.add(txt);
 		
 		txtProductName = new JTextField();
 		txtProductName.setOpaque(false);
 		txtProductName.setColumns(10);
-		txtProductName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "T\u00EAn s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtProductName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tên sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductName.setBounds(158, 67, 210, 35);
 		panel.add(txtProductName);
 		
 		txtWarehousePrice = new JTextField();
 		txtWarehousePrice.setOpaque(false);
 		txtWarehousePrice.setColumns(10);
-		txtWarehousePrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 nh\u1EADp (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtWarehousePrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá nhập (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtWarehousePrice.setBounds(158, 147, 210, 35);
 		panel.add(txtWarehousePrice);
 		
 		txtProductBrand = new JTextField();
 		txtProductBrand.setOpaque(false);
 		txtProductBrand.setColumns(10);
-		txtProductBrand.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u01B0\u01A1ng hi\u1EC7u", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtProductBrand.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thương hiệu", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductBrand.setBounds(158, 107, 210, 35);
 		panel.add(txtProductBrand);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
-		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin \u0111\u0103ng b\u00E1n s\u1EA3n ph\u1EA9m", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin đăng bán sản phẩm", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel_2.setBounds(2, 300, 380, 160);
 		pnDetails.add(panel_2);
 		
 		txtSalePrice = new JTextField();
 		txtSalePrice.setOpaque(false);
 		txtSalePrice.setColumns(10);
-		txtSalePrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 \u0111\u0103ng b\u00E1n (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtSalePrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá đăng bán (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtSalePrice.setBounds(16, 36, 272, 40);
 		panel_2.add(txtSalePrice);
 		
@@ -191,7 +190,7 @@ public class PostProductForm extends JPanel{
 		txtDiscountPercent = new JTextField();
 		txtDiscountPercent.setOpaque(false);
 		txtDiscountPercent.setColumns(10);
-		txtDiscountPercent.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ph\u1EA7n tr\u0103m khuy\u1EBFn m\u00E3i (%)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtDiscountPercent.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Phần trăm khuyến mãi (%)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtDiscountPercent.setBounds(125, 96, 163, 40);
 		panel_2.add(txtDiscountPercent);
 		
@@ -226,7 +225,7 @@ public class PostProductForm extends JPanel{
 				int rs = JOptionPane.showConfirmDialog(null, cboWarehouse);
 				if (rs == 0) {
 					for (WarehouseReceiptDTO warehouse : warehousereceiptList) {
-//						if (warehouse.get   )
+                                            
 					}
 				}
 			} 

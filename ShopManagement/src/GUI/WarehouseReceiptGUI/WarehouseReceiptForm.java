@@ -98,7 +98,7 @@ public class WarehouseReceiptForm extends JPanel{
 		setBounds(0, 0, 830, 490);
 		
 		JPanel pnWarehouse = new JPanel();
-		pnWarehouse.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Phi\u1EBFu nh\u1EADp", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		pnWarehouse.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Phiếu nhập", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnWarehouse.setBounds(380, 40, 450, 450);
 		add(pnWarehouse);
 		pnWarehouse.setLayout(null);
@@ -215,7 +215,7 @@ public class WarehouseReceiptForm extends JPanel{
 		
 		
 		JPanel pnDetails = new JPanel();
-		pnDetails.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Chi ti\u1EBFt phi\u1EBFu nh\u1EADp", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		pnDetails.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Chi tiết phiếu nhập", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnDetails.setInheritsPopupMenu(true);
 		pnDetails.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		pnDetails.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -236,8 +236,7 @@ public class WarehouseReceiptForm extends JPanel{
                 tblDetail.setDefaultEditor(Object.class, null);
 		JScrollPane scrollPane_1 = new JScrollPane(tblDetail, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		pnProductTable.add(scrollPane_1, BorderLayout.CENTER);
-		
-		
+			
 		JLabel lblTmKim = new JLabel("Tìm kiếm");
 		lblTmKim.setForeground(new Color(0, 100, 0));
 		lblTmKim.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -260,7 +259,7 @@ public class WarehouseReceiptForm extends JPanel{
                 pnDetails.add(btnFilter);
 			
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Th\u00F4ng tin s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+		panel.setBorder(new TitledBorder(null, "Thông tin sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel.setBounds(0, 205, 380, 245);
 		pnDetails.add(panel);
 		panel.setLayout(null);
@@ -273,7 +272,7 @@ public class WarehouseReceiptForm extends JPanel{
 		
 		txtProductId = new JTextField();
 		txtProductId.setOpaque(false);
-		txtProductId.setBorder(new TitledBorder(null, "M\u00E3 s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtProductId.setBorder(new TitledBorder(null, "Mã sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductId.setBounds(158, 12, 211, 35);
                 txtProductId.setEditable(false);
 		panel.add(txtProductId);
@@ -282,7 +281,7 @@ public class WarehouseReceiptForm extends JPanel{
 		txtQuantity = new JTextField();
 		txtQuantity.setOpaque(false);
 		txtQuantity.setColumns(10);
-		txtQuantity.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1ED1 l\u01B0\u1EE3ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtQuantity.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Số lượng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtQuantity.setBounds(297, 186, 72, 35);
                 txtQuantity.setEditable(false);
 		panel.add(txtQuantity);
@@ -290,7 +289,7 @@ public class WarehouseReceiptForm extends JPanel{
 		txtProductName = new JTextField();
 		txtProductName.setOpaque(false);
 		txtProductName.setColumns(10);
-		txtProductName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "T\u00EAn s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtProductName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tên sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductName.setBounds(159, 59, 210, 35);
                 txtProductName.setEditable(false);
 		panel.add(txtProductName);
@@ -298,7 +297,7 @@ public class WarehouseReceiptForm extends JPanel{
 		txtPrice = new JTextField();
 		txtPrice.setOpaque(false);
 		txtPrice.setColumns(10);
-		txtPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 nh\u1EADp (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá nhập (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtPrice.setBounds(158, 186, 136, 35);
                 txtPrice.setEditable(false);
 		panel.add(txtPrice);
@@ -306,7 +305,7 @@ public class WarehouseReceiptForm extends JPanel{
 		txtBrandName = new JTextField();
 		txtBrandName.setOpaque(false);
 		txtBrandName.setColumns(10);
-		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u01B0\u01A1ng hi\u1EC7u", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thương hiệu", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtBrandName.setBounds(159, 103, 210, 35);
                 txtBrandName.setEditable(false);
 		panel.add(txtBrandName);
@@ -314,7 +313,7 @@ public class WarehouseReceiptForm extends JPanel{
 		txtCategoryChild = new JTextField();
 		txtCategoryChild.setOpaque(false);
 		txtCategoryChild.setColumns(10);
-		txtCategoryChild.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh m\u1EE5c", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+		txtCategoryChild.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh mục", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtCategoryChild.setBounds(159, 146, 210, 35);
                 txtCategoryChild.setEditable(false);
 		panel.add(txtCategoryChild);

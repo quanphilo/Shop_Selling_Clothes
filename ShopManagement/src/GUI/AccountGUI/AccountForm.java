@@ -78,7 +78,7 @@ public class AccountForm extends JPanel {
         JPanel pnOrder = new JPanel();
         pnOrder.setLayout(null);
         pnOrder.setBorder(
-                new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch nh\u00E2n vi\u00EAn",
+                new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách nhân viên",
                         TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
         pnOrder.setBounds(400, 40, 429, 423);
         add(pnOrder);
@@ -157,7 +157,7 @@ public class AccountForm extends JPanel {
         pnOrder.add(btnFilter);
 
         JPanel panel = new JPanel();
-        panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin nh\u00E2n vi\u00EAn",
+        panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin nhân viên",
                 TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 0)));
         panel.setBounds(10, 40, 378, 423);
         add(panel);
@@ -167,7 +167,7 @@ public class AccountForm extends JPanel {
         txtIdEmployee.setOpaque(false);
         txtIdEmployee.setColumns(10);
         txtIdEmployee.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-                "M\u00E3 nh\u00E2n vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+                "Mã nhân viên", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtIdEmployee.setBounds(12, 24, 188, 35);
         txtIdEmployee.setEditable(false);
         panel.add(txtIdEmployee);
@@ -176,15 +176,26 @@ public class AccountForm extends JPanel {
         txtEmployeeName.setOpaque(false);
         txtEmployeeName.setColumns(10);
         txtEmployeeName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)),
-                "T\u00EAn nh\u00E2n vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+                "Tên nhân viên", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtEmployeeName.setBounds(12, 80, 188, 35);
         txtEmployeeName.setEditable(false);
         panel.add(txtEmployeeName);
 
+        txtEmployeeName.addKeyListener(new KeyAdapter() {
+        public void keyTyped(KeyEvent e) {
+            char c = e.getKeyChar();
+            if (Character.isDigit(c)) {
+                e.consume(); // Loại bỏ ký tự số nhập vào
+                JOptionPane.showMessageDialog(null, "Vui lòng không nhập số vào ô Tên nhân viên!", "Lỗi", JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    });
+
+        
         txtBirthday = new JTextField();
         txtBirthday.setOpaque(false);
         txtBirthday.setColumns(10);
-        txtBirthday.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ng\u00E0y sinh",
+        txtBirthday.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Ngày sinh",
                 TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtBirthday.setBounds(222, 80, 148, 35);
         txtBirthday.setEditable(false);
@@ -203,7 +214,7 @@ public class AccountForm extends JPanel {
         txtPhone.setOpaque(false);
         txtPhone.setColumns(10);
         txtPhone.setBorder(
-                new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1ED1 \u0111i\u1EC7n tho\u1EA1i",
+                new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Số điện thoại",
                         TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtPhone.setBounds(222, 136, 148, 35);
         txtPhone.setEditable(false);
@@ -212,7 +223,7 @@ public class AccountForm extends JPanel {
         txtAddress = new JTextField();
         txtAddress.setOpaque(false);
         txtAddress.setColumns(10);
-        txtAddress.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "\u0110\u1ECBa ch\u1EC9",
+        txtAddress.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Địa chỉ",
                 TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtAddress.setBounds(12, 190, 188, 35);
         txtAddress.setEditable(false);
@@ -239,7 +250,7 @@ public class AccountForm extends JPanel {
         txtUsername = new JTextField();
         txtUsername.setOpaque(false);
         txtUsername.setColumns(10);
-        txtUsername.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "T\u00E0i kho\u1EA3n",
+        txtUsername.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tài khoản",
                 TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtUsername.setBounds(222, 274, 148, 35);
         txtUsername.setEditable(false);
@@ -257,7 +268,7 @@ public class AccountForm extends JPanel {
 
         txtPassword = new JPasswordField();
         txtPassword.setOpaque(false);
-        txtPassword.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "M\u1EADt kh\u1EA9u",
+        txtPassword.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Mật khẩu",
                 TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
         txtPassword.setBounds(222, 321, 148, 35);
         txtPassword.setEditable(false);
@@ -389,7 +400,10 @@ public class AccountForm extends JPanel {
                             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
                             return;
                         }
-
+                        if (!txtBirthday.getText().matches("\\d{4}-\\d{2}-\\d{2}")) {
+                            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng định dạng ngày sinh: yyyy-MM-dd !");
+                            return;
+                        }
                         // Kiểm tra định dạng email hợp lệ
                         if (!txtEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
                             JOptionPane.showMessageDialog(null, "Email không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
@@ -401,7 +415,6 @@ public class AccountForm extends JPanel {
                             JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
-                        // Kiểm tra định dạng số CMND hợp lệ
                         if (!txtCMND.getText().matches("\\d+")) {
                             JOptionPane.showMessageDialog(null, "CCCD/CMND phải là số", "Lỗi", JOptionPane.WARNING_MESSAGE);
                             return;
@@ -428,17 +441,6 @@ public class AccountForm extends JPanel {
                                     txtEmail.getText(),
                                     "abc",
                                     txtCMND.getText());
-                            if (employeeDTO.getFullname().isBlank()
-                                    || employeeDTO.getEmail().isBlank()
-                                    || employeeDTO.getAddress().isBlank()
-                                    || employeeDTO.getPositionDTO().getId_positions().isBlank()
-                                    || employeeDTO.getGender().isBlank()
-                                    || String.valueOf(employeeDTO.getBirthday()).isBlank()
-                                    || employeeDTO.getPhone().isBlank()
-                                    || employeeDTO.getCmnd().isBlank()) {
-                                JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
-                                return;
-                            }
 
                             int status = 0;
                             if (radioActive.isSelected()) {
@@ -520,7 +522,10 @@ public class AccountForm extends JPanel {
                             JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
                             return;
                         }
-
+                        if (!txtBirthday.getText().matches("\\d{4}-\\d{2}-\\d{2}")) {
+                            JOptionPane.showMessageDialog(null, "Vui lòng nhập đúng định dạng ngày sinh: yyyy-MM-dd !");
+                            return;
+                        }
                         // Kiểm tra định dạng email hợp lệ
                         if (!txtEmail.getText().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
                             JOptionPane.showMessageDialog(null, "Email không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
@@ -532,7 +537,6 @@ public class AccountForm extends JPanel {
                             JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Lỗi", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
-                        // Kiểm tra định dạng số CMND hợp lệ
                         if (!txtCMND.getText().matches("\\d+")) {
                             JOptionPane.showMessageDialog(null, "CCCD/CMND phải là số", "Lỗi", JOptionPane.WARNING_MESSAGE);
                             return;
@@ -549,17 +553,7 @@ public class AccountForm extends JPanel {
                                     txtEmail.getText(),
                                     "abc",
                                     txtCMND.getText());
-                            if (employeeDTO.getFullname().isBlank()
-                                    || employeeDTO.getEmail().isBlank()
-                                    || employeeDTO.getAddress().isBlank()
-                                    || employeeDTO.getPositionDTO().getId_positions().isBlank()
-                                    || employeeDTO.getGender().isBlank()
-                                    || String.valueOf(employeeDTO.getBirthday()).isBlank()
-                                    || employeeDTO.getPhone().isBlank()
-                                    || employeeDTO.getCmnd().isBlank()) {
-                                JOptionPane.showMessageDialog(null, "Vui lòng điền đẩy đủ thông tin!");
-                                return;
-                            }
+
                             int kq = employeeBLL.update(employeeDTO);
                             if (kq == 1) {
                                 AccountDTO accountDTO = new AccountDTO(txtIdEmployee.getText(), txtUsername.getText(), String.valueOf(txtPassword.getText()));
@@ -636,7 +630,6 @@ public class AccountForm extends JPanel {
         });
     }
     // loadTable
-
     public void loadTable() {
         DefaultTableModel dfm = new DefaultTableModel();
         String[] header = {"IDNV", "Name", "Email", "Address", "Position"};
@@ -680,12 +673,10 @@ public class AccountForm extends JPanel {
     public void disableButtoninEmployee() {
         btnAdd.setEnabled(false);
         btnUpdate.setEnabled(false);
-        // btnDelete.setEnabled(false);
     }
 
     public void enableButtoninEmployee() {
         btnAdd.setEnabled(true);
         btnUpdate.setEnabled(true);
-        // btnDelete.setEnabled(true);
     }
 }

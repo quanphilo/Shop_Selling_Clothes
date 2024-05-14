@@ -30,6 +30,8 @@ import java.util.*;
 
 import java.io.FileOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -69,15 +71,18 @@ public class ExportOrder extends JDialog {
     private JLabel lblDate;
 
     private String orderId;
+    private double totalPrice = 0;
+    private double discountAmount = 0;
 
     public ExportOrder() {
         initComponents();
     }
 
-    public ExportOrder(OrderDTO order, CustomerDTO customer, Vector<OrderItemDTO> listOrderItemDTO) {
+    public ExportOrder(OrderDTO order, CustomerDTO customer, Vector<OrderItemDTO> listOrderItemDTO, double discountAmount) {
         initComponents();
         loadInfos(order, customer, listOrderItemDTO);
         this.listOrderItemDTO = listOrderItemDTO;
+        this.discountAmount = discountAmount;
         reloadComponents();
         addEvents();
     }
@@ -182,34 +187,34 @@ public class ExportOrder extends JDialog {
         txtSalePrice.setForeground(new Color(220, 20, 60));
         txtSalePrice.setEditable(false);
         txtSalePrice.setColumns(10);
-        txtSalePrice.setBorder(new TitledBorder(null, "Gi\u00E1 khuy\u1EBFn m\u00E3i (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(220, 20, 60)));
+        txtSalePrice.setBorder(new TitledBorder(null, "Giảm giá (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(220, 20, 60)));
         txtSalePrice.setBounds(191, 43, 159, 35);
         panel.add(txtSalePrice);
 
         txtTotalPrice = new JTextField();
         txtTotalPrice.setOpaque(false);
         txtTotalPrice.setColumns(10);
-        txtTotalPrice.setBorder(new TitledBorder(null, "T\u1ED5ng ti\u1EC1n (\u0111)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+        txtTotalPrice.setBorder(new TitledBorder(null, "Thanh toán (đ)", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtTotalPrice.setBounds(8, 5, 174, 35);
         panel.add(txtTotalPrice);
 
         txtOrderPoint = new JTextField();
         txtOrderPoint.setOpaque(false);
         txtOrderPoint.setColumns(10);
-        txtOrderPoint.setBorder(new TitledBorder(null, "\u0110i\u1EC3m h\u00F3a \u0111\u01A1n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+        txtOrderPoint.setBorder(new TitledBorder(null, "Điểm hoá đơn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtOrderPoint.setBounds(8, 82, 174, 35);
         panel.add(txtOrderPoint);
 
         txtCustomerPoint = new JTextField();
         txtCustomerPoint.setOpaque(false);
         txtCustomerPoint.setColumns(10);
-        txtCustomerPoint.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "\u0110i\u1EC3m t\u00EDch l\u0169y", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
+        txtCustomerPoint.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Điểm tích luỹ", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
         txtCustomerPoint.setBounds(189, 82, 161, 35);
         panel.add(txtCustomerPoint);
 
         panel_1 = new JPanel();
         panel_1.setBackground(Color.WHITE);
-        panel_1.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
+        panel_1.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách sản phẩm", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
         panel_1.setBounds(12, 171, 362, 169);
         pnOrder.add(panel_1);
         panel_1.setLayout(new BorderLayout(0, 0));
@@ -230,53 +235,59 @@ public class ExportOrder extends JDialog {
         lblOrderId.setText(order.getId_order());
         lblEmployee.setText(order.getEmployee().getFullname());
         lblCustomer.setText(customer.getFullname());
-        lblDate.setText(String.valueOf(sdf.format(order.getDate())));
-        txtTotalPrice.setText(String.valueOf(order.getTotalprice()));
-        txtOrderPoint.setText(String.valueOf(order.getTotalprice() / 1000));
-        txtCustomerPoint.setText(String.valueOf(customer.getPoint() + order.getTotalprice() / 1000));
+        lblDate.setText(sdf.format(order.getDate()));
+
+        DecimalFormat df = new DecimalFormat("#,##0");
+        totalPrice = 0;
+        for (OrderItemDTO item : listOrderItemDTO) {
+            totalPrice += item.getPrice() * item.getQuantity();
+        }
+
+        double discountPercent = 0;
+        if (order.getVoucher() != null && !order.getVoucher().getCode().equals("Null")) {
+            discountPercent = order.getVoucher().getDiscountpercent() / 100.0;
+            discountAmount = totalPrice * discountPercent;
+            radioSale.setSelected(true);
+            txtSalePercent.setText(String.format("%.1f", discountPercent * 100));
+        } else {
+            radioSale.setSelected(false);
+            txtSalePercent.setText("0");
+        }
+
+        double finalPrice = totalPrice - discountAmount;
+        txtSalePrice.setText(df.format(discountAmount)); 
+        txtTotalPrice.setText(df.format(finalPrice));
+        txtOrderPoint.setText(String.format("%.1f", finalPrice / 1000));
+        txtCustomerPoint.setText(String.format("%.1f", customer.getPoint() + finalPrice / 1000));
 
         DefaultTableModel dfm = new DefaultTableModel();
         String[] header = {"Tên sản phẩm", "Số lượng", "Giá tiền (đ)"};
         dfm.setColumnIdentifiers(header);
-
-        // Get list orderitem
-        for (OrderItemDTO orderitemDTO : listOrderItemDTO) {
-            ProductDTO product = productBLL.getProductById(orderitemDTO.getProduct().getId_product());
-            String[] row = {product.getName(),
-                String.valueOf(orderitemDTO.getQuantity()), String.valueOf(orderitemDTO.getPrice())};
+        for (OrderItemDTO item : listOrderItemDTO) {
+            ProductDTO product = productBLL.getProductById(item.getProduct().getId_product());
+            String[] row = {product.getName(), String.valueOf(item.getQuantity()), df.format(item.getPrice())};
             dfm.addRow(row);
         }
         tblOrderItem.setModel(dfm);
-
-        if (order.getVoucher().getCode().equals("Null")) {
-            radioSale.setSelected(false);
-            txtSalePrice.setText("0");
-            txtSalePercent.setText("0");
-        } else {
-            radioSale.setSelected(true);
-            txtSalePrice.setText(String.valueOf(order.getTotalprice() * (1 - order.getVoucher().getDiscountpercent())));
-            txtSalePercent.setText(String.valueOf(order.getVoucher().getDiscountpercent()));
-        }
     }
 
     public void addEvents() {
         btnExportPDF.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if (orderId!= null){                
+                if (orderId != null) {
                     XuatHoaDon(orderId);
                 }
             }
         });
     }
 
-    //Tạo hàm xuất hóa đơn
     public void XuatHoaDon(String id_order) {
         try {
-            Hashtable map = new Hashtable();
+            Hashtable<String, Object> map = new Hashtable<>();
             JasperReport report = JasperCompileManager.compileReport("src/GUI/JasperReport/newReport.jrxml");
-
             map.put("id_order", id_order);
-
+            map.put("OriginalTotal", totalPrice);
+            map.put("DiscountAmount", discountAmount);
             JasperPrint p = JasperFillManager.fillReport(report, map, JDBCUtil.getConnection());
             JasperViewer.viewReport(p, false);
             JasperExportManager.exportReportToPdfFile(p, "test.pdf");

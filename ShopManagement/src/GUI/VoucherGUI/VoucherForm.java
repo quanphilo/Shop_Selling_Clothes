@@ -7,6 +7,9 @@ import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
+import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
+import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
+import net.sourceforge.jdatepicker.impl.UtilDateModel;
 
 import BLL.VoucherBLL;
 import DTO.VoucherDTO;
@@ -29,8 +32,7 @@ public class VoucherForm extends JPanel {
 	private JTextField txtDiscountPercent;
 	private JLabel lblStartDate;
 	private JLabel lblEndDate;
-	private JTextField txtEndDate;
-	private JTextField txtStartDate;
+        private JDatePickerImpl datePickerStart, datePickerEnd;
 	private JLabel lblNewLabel;
 	private JTable tblVoucher;
 
@@ -113,7 +115,7 @@ public class VoucherForm extends JPanel {
 		pnAction.add(lblCode);
 		
 		panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch Voucher", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách Voucher", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		panel.setBounds(58, 135, 651, 199);
 		pnAction.add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
@@ -123,7 +125,7 @@ public class VoucherForm extends JPanel {
 		scrollPane = new JScrollPane(tblVoucher, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		panel.add(scrollPane);
 			
-		JLabel lblDiscountPercent = new JLabel("(%) chiết khấu");
+		JLabel lblDiscountPercent = new JLabel("Chiết khấu (%)");
 		lblDiscountPercent.setForeground(new Color(0, 102, 51));
 		lblDiscountPercent.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDiscountPercent.setBounds(58, 89, 120, 25);
@@ -134,8 +136,29 @@ public class VoucherForm extends JPanel {
 		txtDiscountPercent.setColumns(10);
 		txtDiscountPercent.setBounds(185, 89, 147, 25);
 		pnAction.add(txtDiscountPercent);
-		
-		lblStartDate = new JLabel("Ngày bắt đầu");
+
+                UtilDateModel modeStart = new UtilDateModel();
+		JDatePanelImpl datePanelStart = new JDatePanelImpl(modeStart);
+		UtilDateModel modelEnd = new UtilDateModel();
+		JDatePanelImpl datePanelEnd = new JDatePanelImpl(modelEnd);
+                
+                //Ngày bắt đầu
+		JPanel pnTuNgay = new JPanel();
+		pnTuNgay.setBounds(515, 50, 186, 27);
+		pnAction.add(pnTuNgay);
+		pnTuNgay.setLayout(new BorderLayout(0, 0));
+		datePickerStart = new JDatePickerImpl(datePanelStart);
+		pnTuNgay.add(datePickerStart);
+
+		//Ngày kết thúc
+		JPanel pnDenNgay = new JPanel();
+		pnDenNgay.setBounds(515, 86, 186, 27);
+		pnAction.add(pnDenNgay);
+		pnDenNgay.setLayout(new BorderLayout(0, 0));
+		datePickerEnd = new JDatePickerImpl(datePanelEnd);
+		pnDenNgay.add(datePickerEnd);
+                    
+                lblStartDate = new JLabel("Ngày bắt đầu");
 		lblStartDate.setForeground(new Color(0, 102, 51));
 		lblStartDate.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblStartDate.setBounds(389, 47, 91, 27);
@@ -147,26 +170,13 @@ public class VoucherForm extends JPanel {
 		lblEndDate.setBounds(389, 83, 102, 27);
 		pnAction.add(lblEndDate);
 		
-		txtEndDate = new JTextField();
-		txtEndDate.setEditable(false);
-		txtEndDate.setColumns(10);
-		txtEndDate.setBounds(515, 86, 186, 27);
-		pnAction.add(txtEndDate);
-		
-		txtStartDate = new JTextField();
-		txtStartDate.setEditable(false);
-		txtStartDate.setColumns(10);
-		txtStartDate.setBounds(515, 50, 188, 27);
-		pnAction.add(txtStartDate);
-
-		
 		panel_2 = new JPanel();
 		panel_2.setBorder(new MatteBorder(0, 0, 3, 0, (Color) new Color(0, 128, 128)));
 		panel_2.setBounds(0, 0, 832, 40);
 		add(panel_2);
 		panel_2.setLayout(null);
 		
-		lblNewLabel = new JLabel("QUẢN LÝ KHUYẾN MÃI (VOUCHER)");
+		lblNewLabel = new JLabel("QUẢN LÝ KHUYẾN MÃI");
 		lblNewLabel.setForeground(new Color(0, 128, 128));
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNewLabel.setBounds(300, 0, 300, 30);
@@ -176,16 +186,16 @@ public class VoucherForm extends JPanel {
 	}
 	// Load Table
 	public void loadTable() {
-		listVoucher = voucherBLL.getVouchers();
+		listVoucher = voucherBLL.getValidVouchers();
 		DefaultTableModel dfm = new DefaultTableModel();
-		String[] header = {"ID Voucher", "Mã Code", "(%) chiết khấu", "Ngày bắt đầu", "Ngày kết thúc"};
+		String[] header = {"ID Voucher", "Mã Code", "Chiết khấu (%)", "Ngày bắt đầu", "Ngày kết thúc"};
 		dfm.setColumnIdentifiers(header);
 		
 		for(VoucherDTO voucherDTO : listVoucher) {
 			String[] row = {
 					voucherDTO.getId_voucher(), 
 					voucherDTO.getCode(), 
-					String.valueOf(voucherDTO.getDiscountpercent()), 
+                                        String.valueOf((int) voucherDTO.getDiscountpercent()),
 					sdf.format(voucherDTO.getStartdate()), 
 					sdf.format(voucherDTO.getEnddate())
 			};
@@ -195,32 +205,104 @@ public class VoucherForm extends JPanel {
 	}
 	
 	public void addEvents() {
-		tblVoucher.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				int row = tblVoucher.getSelectedRow();
-								
-				VoucherDTO voucherDTO = voucherBLL.getVoucherById(String.valueOf(tblVoucher.getValueAt(row, 0)));
-				txtIdVoucher.setText(voucherDTO.getId_voucher());
-				txtCode.setText(voucherDTO.getCode());
-				txtDiscountPercent.setText(String.valueOf(voucherDTO.getDiscountpercent()));
-				txtStartDate.setText(String.valueOf(voucherDTO.getStartdate()));
-				txtEndDate.setText(String.valueOf(voucherDTO.getEnddate()));
-			}
-		});
-		
+                tblVoucher.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        int row = tblVoucher.getSelectedRow();
+
+                        VoucherDTO voucherDTO = voucherBLL.getVoucherById(String.valueOf(tblVoucher.getValueAt(row, 0)));
+                        txtIdVoucher.setText(voucherDTO.getId_voucher());
+                        txtCode.setText(voucherDTO.getCode());
+                        txtDiscountPercent.setText(String.valueOf(voucherDTO.getDiscountpercent()));
+
+                        if (voucherDTO.getStartdate() != null) {
+                            Calendar startCal = Calendar.getInstance();
+                            startCal.setTime(voucherDTO.getStartdate());
+                            datePickerStart.getModel().setDate(startCal.get(Calendar.YEAR), startCal.get(Calendar.MONTH), startCal.get(Calendar.DAY_OF_MONTH));
+                            datePickerStart.getModel().setSelected(true);
+                        } else {
+                            datePickerStart.getModel().setSelected(false);
+                        }
+
+                        if (voucherDTO.getEnddate() != null) {
+                            Calendar endCal = Calendar.getInstance();
+                            endCal.setTime(voucherDTO.getEnddate());
+                            datePickerEnd.getModel().setDate(endCal.get(Calendar.YEAR), endCal.get(Calendar.MONTH), endCal.get(Calendar.DAY_OF_MONTH));
+                            datePickerEnd.getModel().setSelected(true);
+                        } else {
+                            datePickerEnd.getModel().setSelected(false);
+                        }
+                    }
+                });
+
+
+                datePickerStart.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Date startDate = (Date) datePickerStart.getModel().getValue();
+                        Date endDate = (Date) datePickerEnd.getModel().getValue();
+                        if (endDate != null && startDate.compareTo(endDate) > 0) {
+                            JOptionPane.showMessageDialog(null, "Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc!");
+                            datePickerStart.getModel().setValue(null);
+                        }
+                    }
+                });
+
+                datePickerEnd.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Calendar today = Calendar.getInstance();
+                        today.set(Calendar.HOUR_OF_DAY, 0);
+                        today.set(Calendar.MINUTE, 0);
+                        today.set(Calendar.SECOND, 0);
+                        Date currentDate = today.getTime();
+
+                        Date startDate = (Date) datePickerStart.getModel().getValue();
+                        Date endDate = (Date) datePickerEnd.getModel().getValue();
+
+                        if (endDate != null && endDate.before(currentDate)) {
+                            JOptionPane.showMessageDialog(null, "Ngày kết thúc không được nhỏ hơn ngày hiện tại!");
+                            datePickerEnd.getModel().setValue(null);
+                            return;
+                        }
+
+                        if (startDate != null && endDate != null && endDate.compareTo(startDate) < 0) {
+                            JOptionPane.showMessageDialog(null, "Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu!");
+                            datePickerEnd.getModel().setValue(null);
+                        }
+                    }
+                });
+
+                txtDiscountPercent.addFocusListener(new FocusAdapter() {
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        String discountStr = txtDiscountPercent.getText().trim();
+                        try {
+                            int discount = Integer.parseInt(discountStr);
+                            if (discount < 0 || discount > 100) {
+                                JOptionPane.showMessageDialog(null, " Chiết khấu (%) phải nằm trong khoảng từ 0 đến 100!");
+                                txtDiscountPercent.setText(""); 
+                            } else {
+                                txtDiscountPercent.setText(String.format("%d", discount));
+                            }
+                        } catch (NumberFormatException ex) {
+                            JOptionPane.showMessageDialog(null, "Vui lòng nhập số nguyên hợp lệ cho Chiết khấu (%)!");
+                            txtDiscountPercent.setText(""); 
+                        }
+                    }
+                });
+
 		btnAddVoucher.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				date = new Date();
 				txtCode.setEditable(true);
 				txtDiscountPercent.setEditable(true);
-				txtStartDate.setEditable(true);
-				txtEndDate.setEditable(true);
-				
+		
 				txtIdVoucher.setText("VC" + date.getTime());
 				txtCode.setText("");
 				txtDiscountPercent.setText("");
-				txtStartDate.setText("");
-				txtEndDate.setText("");
+                                datePickerStart.getModel().setValue(null);
+                                datePickerEnd.getModel().setValue(null);
 				
 				disableButtoninVoucher();
 				
@@ -232,27 +314,38 @@ public class VoucherForm extends JPanel {
 				btnConfirm.setBounds(640, 20, 153, 35);
 				pnDetails.add(btnConfirm);
 				refreshComponents();
+                                
 				btnConfirm.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent e) {
 						try {
+                                                        String code = txtCode.getText().trim();
+                                                        String discountPercentStr = txtDiscountPercent.getText().trim();
+                                                        Date startDate = (Date) datePickerStart.getModel().getValue();
+                                                        Date endDate = (Date) datePickerEnd.getModel().getValue();
+
+      
+                                                        if (code.isEmpty() || discountPercentStr.isEmpty() || startDate == null || endDate == null) {
+                                                            JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
+                                                            return;
+                                                        }
+                                    
+                                                        float discountPercent = Float.parseFloat(discountPercentStr);
 							VoucherDTO voucherDTO = new VoucherDTO(
-									txtIdVoucher.getText(), txtCode.getText(), Float.valueOf(txtDiscountPercent.getText()), sdf.parse(txtStartDate.getText()), sdf.parse(txtEndDate.getText())
+									txtIdVoucher.getText(), txtCode.getText(), Integer.valueOf(txtDiscountPercent.getText()),     (Date) datePickerStart.getModel().getValue(), (Date) datePickerEnd.getModel().getValue()
 									);
 							int kq = voucherBLL.insert(voucherDTO);
 							if(kq == 1) {
 								JOptionPane.showMessageDialog(null, "Thêm thành công!");
 								txtCode.setEditable(false);
+                                                                txtDiscountPercent.setEditable(false);
 								pnDetails.remove(btnConfirm);
 								loadTable();
 								refreshComponents();
 								enableButtoninVoucher();
-							}else if(kq == 2){
-								JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
 							} else {
 								JOptionPane.showMessageDialog(null, "Thêm thất bại!");
 							}
 						} catch (Exception e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 							JOptionPane.showMessageDialog(null,"Vui lòng nhập thông tin hợp lệ");
 						}
@@ -270,8 +363,6 @@ public class VoucherForm extends JPanel {
                         }
                         txtCode.setEditable(true);
                         txtDiscountPercent.setEditable(true);
-                        txtStartDate.setEditable(true);
-                        txtEndDate.setEditable(true);
 
                         // Ẩn các nút Thêm, Sửa, Xóa
                         disableButtoninVoucher();
@@ -284,26 +375,22 @@ public class VoucherForm extends JPanel {
                         btnConfirm.setBounds(640, 20, 153, 35);
                         pnDetails.add(btnConfirm);
 
-                        // Xử lý sự kiện cho nút Xác nhận
                         btnConfirm.addMouseListener(new MouseAdapter() {
                             public void mouseClicked(MouseEvent e) {
                                 try {
                                     VoucherDTO voucherDTO = new VoucherDTO(
-                                            txtIdVoucher.getText(), txtCode.getText(), Float.valueOf(txtDiscountPercent.getText()), sdf.parse(txtStartDate.getText()), sdf.parse(txtEndDate.getText())
+                                            txtIdVoucher.getText(), txtCode.getText(), Integer.valueOf(txtDiscountPercent.getText()),  (Date) datePickerStart.getModel().getValue(), (Date) datePickerEnd.getModel().getValue()
                                     );
                                     int kq = voucherBLL.update(voucherDTO);
                                     if(kq == 1) {
                                         JOptionPane.showMessageDialog(null, "Sửa thành công!");
                                         txtCode.setEditable(false);
                                         txtDiscountPercent.setEditable(false);
-                                        txtStartDate.setEditable(false);
-                                        txtEndDate.setEditable(false);
+
                                         pnDetails.remove(btnConfirm);
                                         loadTable();
                                         refreshComponents();
                                         enableButtoninVoucher(); // Hiển thị lại các nút Thêm, Sửa, Xóa
-                                    } else if(kq == 2) {
-                                        JOptionPane.showMessageDialog(null, "Vui lòng nhập đầy đủ thông tin!");
                                     } else {
                                         JOptionPane.showMessageDialog(null, "Sửa thất bại!");
                                     }
@@ -320,24 +407,35 @@ public class VoucherForm extends JPanel {
                 btnDeleteVoucher.addMouseListener(new MouseAdapter() {
                     public void mouseClicked(MouseEvent e) {
                         int row = tblVoucher.getSelectedRow(); 
-                        if(row < 0) {
+                        if (row < 0) {
                             JOptionPane.showMessageDialog(null, "Vui lòng chọn voucher cần xóa!");
-                            return; 
+                            return;
                         }
+                        String voucherId = String.valueOf(tblVoucher.getValueAt(row, 0)); 
                         int rs = JOptionPane.showConfirmDialog(null, "Xác nhận xóa voucher!");
                         if (rs == 0) {
-                            String id_voucher = String.valueOf(tblVoucher.getValueAt(row, 0)); 
-                            int kq = voucherBLL.delete(id_voucher);
-                            if(kq == 1) {
+                            int kq = voucherBLL.delete(voucherId, rs);
+                            if (kq == 1) {
                                 JOptionPane.showMessageDialog(null, "Xóa thành công!");
-                                loadTable(); 
-                            }else {
+                                removeVoucherFromTable(voucherId);
+                            } else {
                                 JOptionPane.showMessageDialog(null, "Xóa thất bại!");
                             }
                         }
                     }
                 });
-	}
+            }
+        // Phương thức để loại bỏ voucher ra khỏi bảng tblVoucher
+        private void removeVoucherFromTable(String voucherId) {
+                DefaultTableModel model = (DefaultTableModel) tblVoucher.getModel();
+                for (int i = 0; i < model.getRowCount(); i++) {
+                    if (model.getValueAt(i, 0).equals(voucherId)) {
+                        model.removeRow(i);
+                        return;
+                }
+            }
+         }
+
 	public void refreshComponents() {
 		this.repaint();
 		this.revalidate();

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="360" pageHeight="360" columnWidth="320" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6363869d-3bb9-48ef-b1ca-9182add534c9">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="360" pageHeight="480" columnWidth="320" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6363869d-3bb9-48ef-b1ca-9182add534c9">
 	<property name="ireport.zoom" value="1.610510000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="48"/>
@@ -27,22 +27,29 @@
 	<parameter name="id_order" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+        <parameter name="OriginalTotal" class="java.lang.Double" isForPrompting="false">
+                <defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+        </parameter>
+        <parameter name="DiscountAmount" class="java.lang.Double" isForPrompting="false">
+                <defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+        </parameter>
+
 	<queryString>
-		<![CDATA[SELECT 
-	tbl_order.id_order,
-    tbl_customer.fullname AS customer_name,
-    tbl_employee.fullname AS employee_name,
-    tbl_order.date,
-    tbl_product.name AS product_name,
-    tbl_order_item.quantity,
-    tbl_order_item.price,
-    tbl_order.totalprice
-FROM tbl_order_item 
-JOIN tbl_order ON tbl_order.id_order = tbl_order_item.id_order
-JOIN tbl_product ON tbl_product.id_product = tbl_order_item.id_product
-JOIN tbl_customer ON tbl_customer.id_customer = tbl_order.id_customer
-JOIN tbl_employee ON tbl_employee.id_employee = tbl_order.id_employee
-WHERE tbl_order.id_order = $P{id_order}]]>
+        <![CDATA[SELECT 
+        tbl_order.id_order,
+        tbl_customer.fullname AS customer_name,
+        tbl_employee.fullname AS employee_name,
+        tbl_order.date,
+        tbl_product.name AS product_name,
+        tbl_order_item.quantity,
+        tbl_order_item.price,
+        tbl_order.totalprice
+        FROM tbl_order_item 
+        JOIN tbl_order ON tbl_order.id_order = tbl_order_item.id_order
+        JOIN tbl_product ON tbl_product.id_product = tbl_order_item.id_product
+        JOIN tbl_customer ON tbl_customer.id_customer = tbl_order.id_customer
+        JOIN tbl_employee ON tbl_employee.id_employee = tbl_order.id_employee
+        WHERE tbl_order.id_order = $P{id_order}]]>
 	</queryString>
 	<field name="id_order" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -62,17 +69,38 @@ WHERE tbl_order.id_order = $P{id_order}]]>
 	<field name="totalprice" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<title>
-		<band height="40" splitType="Stretch">
-			<staticText>
-				<reportElement x="29" y="0" width="263" height="40" uuid="a5c281d7-a511-45aa-824d-0ef43dcd74e9"/>
-				<textElement textAlignment="Center">
-					<font size="22" isBold="true"/>
-				</textElement>
-				<text><![CDATA[HÓA ĐƠN BÁN HÀNG]]></text>
-			</staticText>
-		</band>
-	</title>
+        <title>
+            <band height="100" splitType="Stretch"> 
+                <staticText>
+                    <reportElement x="0" y="0" width="320" height="30" uuid="c56a4180-65aa-42ec-a945-5fd21dec0538"/>
+                    <textElement textAlignment="Center">
+                        <font size="22" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[FASHION SHOP]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="0" y="30" width="320" height="20" uuid="6a7fcb25-487e-4f31-8c1a-460bf39a8f3a"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Address: 403 CMT8, Phường 14, Quận 10, TPHCM]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="0" y="50" width="320" height="20" uuid="123e4567-e89b-12d3-a456-426614174000"/>
+                    <textElement textAlignment="Center">
+                        <font size="12" isBold="false"/>
+                    </textElement>
+                    <text><![CDATA[Telephone: 0395305101]]></text>
+                </staticText>
+                <staticText>
+                    <reportElement x="0" y="70" width="320" height="30" uuid="a5c281d7-a511-45aa-824d-0ef43dcd74e9"/>
+                    <textElement textAlignment="Center">
+                        <font size="16" isBold="true"/>
+                    </textElement>
+                    <text><![CDATA[HÓA ĐƠN BÁN HÀNG]]></text>
+                </staticText>
+            </band>
+        </title>
 	<pageHeader>
 		<band height="94" splitType="Stretch">
 			<staticText>
@@ -127,44 +155,69 @@ WHERE tbl_order.id_order = $P{id_order}]]>
 			<staticText>
 				<reportElement x="212" y="0" width="106" height="20" uuid="c2318455-eee1-49fd-a2ad-14a38edd3194"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<text><![CDATA[Thành tiền]]></text>
+				<text><![CDATA[Giá tiền]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
-	<detail>
-		<band height="20" splitType="Stretch">
-			<line>
-				<reportElement x="0" y="0" width="320" height="1" uuid="7adbd0ec-a150-4207-a465-9def2a92f87b"/>
-			</line>
-			<textField>
-				<reportElement x="0" y="0" width="106" height="20" uuid="5fdb5ac3-4716-4644-ac9b-3ce5903547b1"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="106" y="0" width="106" height="20" uuid="7c4525d5-7519-47a6-8b02-90b06e5ebd01"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="212" y="0" width="106" height="20" uuid="85e5d244-60a6-4764-9987-6e16a04247a8"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
-			</textField>
-		</band>
-	</detail>
-	<columnFooter>
-		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="218" y="0" width="100" height="20" uuid="9b0a74c7-a780-43b5-b078-18d71d482a29"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{totalprice}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="106" y="0" width="106" height="20" uuid="64483c7e-f250-4b82-9156-5cbfa1f7ec3a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<text><![CDATA[Tổng tiền]]></text>
-			</staticText>
-		</band>
-	</columnFooter>
+        <detail>
+            <band height="20" splitType="Stretch">
+                <line>
+                    <reportElement x="0" y="0" width="320" height="1" uuid="7adbd0ec-a150-4207-a465-9def2a92f87b"/>
+                </line>
+                <textField>
+                    <reportElement x="0" y="0" width="106" height="20" uuid="5fdb5ac3-4716-4644-ac9b-3ce5903547b1"/>
+                    <textElement verticalAlignment="Middle"/>
+                    <textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="106" y="0" width="106" height="20" uuid="7c4525d5-7519-47a6-8b02-90b06e5ebd01"/>
+                    <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                    <textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
+                </textField>
+                <textField>
+                    <reportElement x="212" y="0" width="106" height="20" uuid="85e5d244-60a6-4764-9987-6e16a04247a8"/>
+                    <textElement textAlignment="Right" verticalAlignment="Middle"/>
+                    <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0").format($F{price})]]></textFieldExpression>
+                </textField>
+            </band>
+        </detail>
+<columnFooter>
+    <band height="120" splitType="Stretch">
+        <staticText>
+            <reportElement x="106" y="0" width="160" height="20" uuid="123e4567-e89b-12d3-a456-426614174000"/>
+            <textElement textAlignment="Center" verticalAlignment="Middle"/>
+            <text><![CDATA[Tổng tiền:]]></text>
+        </staticText>
+        <textField>
+            <reportElement x="160" y="0" width="160" height="20" uuid="c56a4180-65aa-42ec-a945-5fd21dec0538"/>
+            <textElement textAlignment="Right" verticalAlignment="Middle"/>
+            <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0 đ").format($P{OriginalTotal})]]></textFieldExpression>
+        </textField>
+        <staticText>
+            <reportElement x="106" y="20" width="160" height="20" uuid="6a7fcb25-487e-4f31-8c1a-460bf39a8f3a"/>
+            <textElement textAlignment="Center" verticalAlignment="Middle"/>
+            <text><![CDATA[Giảm giá:]]></text>
+        </staticText>
+        <textField>
+            <reportElement x="160" y="20" width="160" height="20" uuid="123e4567-e89b-12d3-a456-426614174001"/>
+            <textElement textAlignment="Right" verticalAlignment="Middle"/>
+            <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0 đ").format($P{DiscountAmount})]]></textFieldExpression>
+        </textField>
+        <staticText>
+            <reportElement x="106" y="40" width="160" height="20" uuid="64483c7e-f250-4b82-9156-5cbfa1f7ec3a"/>
+            <textElement textAlignment="Center" verticalAlignment="Middle"/>
+            <text><![CDATA[Thanh toán:]]></text>
+        </staticText>
+        <textField>
+            <reportElement x="160" y="40" width="160" height="20" uuid="9b0a74c7-a780-43b5-b078-18d71d482a29"/>
+            <textElement textAlignment="Right" verticalAlignment="Middle"/>
+            <textFieldExpression><![CDATA[new java.text.DecimalFormat("#,##0 đ").format($F{totalprice})]]></textFieldExpression>
+        </textField>
+        <staticText>
+            <reportElement x="0" y="80" width="320" height="20" uuid="9ec805b2-2f10-4a81-9f9a-66d7aabc046f"/>
+            <textElement textAlignment="Center" verticalAlignment="Middle"/>
+            <text><![CDATA[Cảm ơn quý khách, hẹn gặp lại!]]></text>
+        </staticText>
+    </band>
+</columnFooter>
 </jasperReport>

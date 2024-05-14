@@ -1,7 +1,7 @@
 package BLL;
 
 import java.util.Vector;
-
+import java.sql.SQLException;
 import Cores.Format;
 import Cores.ReadWriteFile;
 import DAL.CustomerDAL;
@@ -71,7 +71,6 @@ public class CustomerBLL {
 		return kq;
 	}
         
-	// Phương thức tìm kiếm khách hàng theo tên
         public Vector<CustomerDTO> searchCustomersByName(String name) {
                 Vector<CustomerDTO> listCustomer  = customerDAL.getCustomers(); 
                 Vector<CustomerDTO> searchResult = new Vector<>();
@@ -84,10 +83,9 @@ public class CustomerBLL {
 
                 return searchResult;
             }
-	// public int delete(String id_customer) {
-	// 	int kq = customerDAL.delete(id_customer);
-	// 	return kq;
-	// }
+        public int delete(String customerId, int status) {
+                return customerDAL.delete(customerId, status);
+        }
 	
 	public int  writeExcel(Vector<Vector<String>> listObjectData, Vector<String> header) {
 		return readWriteFile.writeExcel(listObjectData, header);
@@ -96,6 +94,4 @@ public class CustomerBLL {
 	public int updatePoint(CustomerDTO customerDTO) {
 		return customerDAL.updatePoint(customerDTO);
 	}
-
-	
 }

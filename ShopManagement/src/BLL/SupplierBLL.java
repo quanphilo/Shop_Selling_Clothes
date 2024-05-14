@@ -34,15 +34,14 @@ public class SupplierBLL {
 		return kq;
 	}
 	
-	public int delete(String id_supplier) {
-		int kq = supplierDAL.delete(id_supplier);
-		return kq;
-	}
+        public int delete(String supplierId, int status) {
+                return supplierDAL.delete(supplierId, status);
+        }
 
-        public Vector<SupplierDTO> searchSuppliersByName(String searchText) {
+        public Vector<SupplierDTO> searchSuppliers(String searchText) {
             if (searchText == null || searchText.isBlank()) {
-                return new Vector<SupplierDTO>(); // Return empty list if search text is null or blank
+                return new Vector<SupplierDTO>(); 
             }
-            return supplierDAL.searchSuppliersByName(searchText.trim()); // Trim the search text to avoid leading/trailing spaces
+            return supplierDAL.searchSuppliers(searchText.trim()); 
         }
     }

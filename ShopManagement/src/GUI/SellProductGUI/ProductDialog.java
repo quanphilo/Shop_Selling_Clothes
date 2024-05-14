@@ -91,7 +91,7 @@ public class ProductDialog extends JDialog {
 
 		txtId = new JTextField();
 		txtId.setOpaque(false);
-		txtId.setBorder(new TitledBorder(null, "M\u00E3 s\u1EA3n ph\u1EA9m", TitledBorder.LEADING,
+		txtId.setBorder(new TitledBorder(null, "Mã sản phẩm", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtId.setBounds(157, 20, 211, 35);
                 txtId.setEditable(false);
@@ -101,7 +101,7 @@ public class ProductDialog extends JDialog {
 		txtQuantity = new JTextField();
 		txtQuantity.setOpaque(false);
 		txtQuantity.setColumns(10);
-		txtQuantity.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1ED1 l\u01B0\u1EE3ng",
+		txtQuantity.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Số lượng",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtQuantity.setBounds(269, 235, 99, 35);
 		panel.add(txtQuantity);
@@ -109,7 +109,7 @@ public class ProductDialog extends JDialog {
 		txtName = new JTextField();
 		txtName.setOpaque(false);
 		txtName.setColumns(10);
-		txtName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "T\u00EAn s\u1EA3n ph\u1EA9m",
+		txtName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tên sản phẩm",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtName.setBounds(158, 60, 210, 35);
                 txtName.setEditable(false);
@@ -118,7 +118,7 @@ public class ProductDialog extends JDialog {
 		txtCategory = new JTextField();
 		txtCategory.setOpaque(false);
 		txtCategory.setColumns(10);
-		txtCategory.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh m\u1EE5c",
+		txtCategory.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh mục",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtCategory.setBounds(158, 147, 210, 35);
                 txtCategory.setEditable(false);
@@ -127,7 +127,7 @@ public class ProductDialog extends JDialog {
 		txtBrand = new JTextField();
 		txtBrand.setOpaque(false);
 		txtBrand.setColumns(10);
-		txtBrand.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u01B0\u01A1ng hi\u1EC7u",
+		txtBrand.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thương hiệu",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtBrand.setBounds(158, 100, 210, 35);
                 txtBrand.setEditable(false);
@@ -142,7 +142,7 @@ public class ProductDialog extends JDialog {
 		txtSellPrice = new JTextField();
 		txtSellPrice.setOpaque(false);
 		txtSellPrice.setColumns(10);
-		txtSellPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 b\u00E1n (\u0111)",
+		txtSellPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá bán (đ)",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtSellPrice.setBounds(158, 188, 210, 35);
                 txtSellPrice.setEditable(false);
@@ -169,7 +169,7 @@ public class ProductDialog extends JDialog {
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch s\u1EA3n ph\u1EA9m",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách sản phẩm",
 						TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		panel_1.setBounds(393, 0, 409, 322);
 		pnHeader.add(panel_1);

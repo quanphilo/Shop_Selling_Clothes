@@ -25,6 +25,7 @@ import DTO.OrderDTO;
 import DTO.OrderItemDTO;
 import DTO.ProductDTO;
 import DTO.VoucherDTO;
+import java.text.DecimalFormat;
 
 public class SellProductForm extends JPanel {
 	private OrderItemBLL orderItemBLL = new OrderItemBLL();
@@ -37,7 +38,7 @@ public class SellProductForm extends JPanel {
 	private BrandBLL brandBLL = new BrandBLL();
 	private Vector<CategoryChildDTO> listCategoryChild = categorychildBLL.getCategoryChilds();
 	private Vector<BrandDTO> listBrand = brandBLL.getBrands();
-	private Vector<VoucherDTO> listVoucher = voucherBLL.getVouchers();
+	private Vector<VoucherDTO> listVoucher = voucherBLL.getValidVouchers();
 
 	private static CustomerDTO customerDTO;
 	private static VoucherDTO voucherDTO;
@@ -56,6 +57,7 @@ public class SellProductForm extends JPanel {
 	private JTextField txtProductName;
 	private JTextField txtProductPrice;
 	private JTextField txtBrandName;
+        private static DecimalFormat df = new DecimalFormat("#,###");
 
 	private JButton btnFindCustomer;
 	private static JTextField txtCustomer;
@@ -99,7 +101,7 @@ public class SellProductForm extends JPanel {
 
 		JPanel pnOrder = new JPanel();
 		pnOrder.setLayout(null);
-		pnOrder.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "H\u00F3a \u0111\u01A1n",
+		pnOrder.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Hoá đơn",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnOrder.setBounds(390, 40, 440, 450);
 		add(pnOrder);
@@ -181,7 +183,7 @@ public class SellProductForm extends JPanel {
 
 		JPanel pnOrderTable = new JPanel();
 		pnOrderTable.setBorder(
-				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh s\u00E1ch s\u1EA3n ph\u1EA9m",
+				new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh sách sản phẩm",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		pnOrderTable.setBounds(6, 145, 430, 156);
 		pnOrder.add(pnOrderTable);
@@ -253,7 +255,7 @@ public class SellProductForm extends JPanel {
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u00F4ng tin s\u1EA3n ph\u1EA9m",
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thông tin sản phẩm",
 				TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 128, 128)));
 		panel.setBounds(1, 231, 380, 259);
 		add(panel);
@@ -267,7 +269,7 @@ public class SellProductForm extends JPanel {
 		txtProductId = new JTextField();
 		txtProductId.setOpaque(false);
 		txtProductId.setColumns(10);
-		txtProductId.setBorder(new TitledBorder(null, "M\u00E3 s\u1EA3n ph\u1EA9m", TitledBorder.LEADING,
+		txtProductId.setBorder(new TitledBorder(null, "Mã sản phẩm", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductId.setBounds(145, 23, 223, 35);
                 txtProductId.setEditable(false);
@@ -277,7 +279,7 @@ public class SellProductForm extends JPanel {
 		txtProductQuantity.setOpaque(false);
 		txtProductQuantity.setColumns(10);
 		txtProductQuantity
-				.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "S\u1ED1 l\u01B0\u1EE3ng",
+				.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Số lượng",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductQuantity.setBounds(293, 208, 75, 35);
                 txtProductQuantity.setEditable(false);
@@ -287,7 +289,7 @@ public class SellProductForm extends JPanel {
 		txtProductName.setOpaque(false);
 		txtProductName.setColumns(10);
 		txtProductName
-				.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "T\u00EAn s\u1EA3n ph\u1EA9m",
+				.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Tên sản phẩm",
 						TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductName.setBounds(145, 71, 223, 35);
                 txtProductName.setEditable(false);
@@ -296,7 +298,7 @@ public class SellProductForm extends JPanel {
 		txtProductPrice = new JTextField();
 		txtProductPrice.setOpaque(false);
 		txtProductPrice.setColumns(10);
-		txtProductPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Gi\u00E1 (\u0111)",
+		txtProductPrice.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Giá bán (đ)",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtProductPrice.setBounds(145, 208, 144, 35);
                 txtProductPrice.setEditable(false);
@@ -305,7 +307,7 @@ public class SellProductForm extends JPanel {
 		txtBrandName = new JTextField();
 		txtBrandName.setOpaque(false);
 		txtBrandName.setColumns(10);
-		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Th\u01B0\u01A1ng hi\u1EC7u",
+		txtBrandName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Thương hiệu",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtBrandName.setBounds(145, 118, 223, 35);
                 txtBrandName.setEditable(false);
@@ -314,7 +316,7 @@ public class SellProductForm extends JPanel {
 		txtCategoryName = new JTextField();
 		txtCategoryName.setOpaque(false);
 		txtCategoryName.setColumns(10);
-		txtCategoryName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh m\u1EE5c",
+		txtCategoryName.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Danh mục",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 139, 139)));
 		txtCategoryName.setBounds(145, 165, 223, 35);
                 txtCategoryName.setEditable(false);
@@ -323,7 +325,7 @@ public class SellProductForm extends JPanel {
 		JPanel panel_3 = new JPanel();
 		panel_3.setLayout(null);
 		panel_3.setBorder(
-				new TitledBorder(null, "L\u1ECDc", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
+				new TitledBorder(null, "Lọc", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 128, 0)));
 		panel_3.setBounds(10, 40, 371, 136);
 		add(panel_3);
 
@@ -389,13 +391,12 @@ public class SellProductForm extends JPanel {
 		separator.setBackground(new Color(0, 128, 0));
 		separator.setBounds(385, 32, 2, 455);
 		add(separator);
-
+                
 		for (VoucherDTO voucher : listVoucher) {
 			if (voucher.getCode().equals(String.valueOf(cboVoucher.getSelectedItem()))) {
 				voucherDTO = voucher;
 			}
 		}
-
 	}
 
 	public void addEvents() {
@@ -476,84 +477,101 @@ public class SellProductForm extends JPanel {
 			}
 		});
 
-		btnCheckout.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				// get voucher
-				for (VoucherDTO voucher : listVoucher) {
-					if (voucher.getCode().equals(String.valueOf(cboVoucher.getSelectedItem()))) {
-						voucherDTO = voucher;
-					}
-				}
-				// Insert Order
-				if (txtOrderPrice.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Vui lòng chọn mua sản phẩm");
-					return;
-				}
-				float orderPrice = Float.valueOf(txtOrderPrice.getText());
+                btnCheckout.addMouseListener(new MouseAdapter() {
+                    public void mouseClicked(MouseEvent e) {
+                        // Lấy voucher
+                        for (VoucherDTO voucher : listVoucher) {
+                            if (voucher.getCode().equals(String.valueOf(cboVoucher.getSelectedItem()))) {
+                                voucherDTO = voucher;
+                            }
+                        }
+                        // Thêm đơn hàng
+                        if (txtOrderPrice.getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Vui lòng chọn mua sản phẩm");
+                            return;
+                        }
+                        int orderPrice = Integer.valueOf(txtOrderPrice.getText().replace(",", "")); 
 
-				OrderDTO orderDTO = new OrderDTO(
-						txtOrderId.getText(),
-						customerDTO,
-						orderPrice,
-						voucherDTO,
-						employeeDTO,
-						date);
-				int kq1 = orderBLL.insert(orderDTO);
-				if (kq1 == 2) {
-					JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
-					return;
-				} else if (kq1 == 0) {
-					JOptionPane.showMessageDialog(null, "Lỗi !");
-					return;
-				}
+                        int discount = voucherDTO.getDiscountpercent() / 100;
+                        int finalPrice = orderPrice - (orderPrice * discount);
 
-				// Insert OrderItem
-				for (OrderItemDTO orderItemDTO : listOrderItem) {
-					if (orderItemBLL.insert(orderItemDTO) == 0) {
-						JOptionPane.showMessageDialog(null, "Lỗi!");
-						return;
-					} else {
-						ProductDTO product = productBLL.getProductById(orderItemDTO.getProduct().getId_product());
-						int updateQuantity = product.getQuantity() - orderItemDTO.getQuantity();
-						product.setQuantity(updateQuantity);
-						int updateProduct = productBLL.update(product);
-					}
-				}
+                        OrderDTO orderDTO = new OrderDTO(
+                                txtOrderId.getText(),
+                                customerDTO,
+                                finalPrice, 
+                                voucherDTO,
+                                employeeDTO,
+                                date);
+                        int kq1 = orderBLL.insert(orderDTO);
+                        if (kq1 == 2) {
+                            JOptionPane.showMessageDialog(null, "Vui lòng điền đầy đủ thông tin");
+                            return;
+                        } else if (kq1 == 0) {
+                            JOptionPane.showMessageDialog(null, "Lỗi !");
+                            return;
+                        }
 
-				JOptionPane.showMessageDialog(null, "Thanh toán thành công!");
-				int point =  Math.round(Float.valueOf(txtTotalPrice.getText())/1000);
-				customerDTO.setPoint(customerDTO.getPoint() + point);
-				int updatepoint = customerBLL.updatePoint(customerDTO);
-				ExportOrder exportOrder = new ExportOrder(orderDTO, customerDTO, listOrderItem);
-				exportOrder.setVisible(true);
-				listOrderItem.removeAllElements();
-                                
-                                
-                                tblOrderItem.removeAll();
-                                DefaultTableModel model = (DefaultTableModel) tblOrderItem.getModel();
-                                model.setRowCount(0);
-                                date = new Date();
-                                id_order = "OR" + date.getTime();
-                                txtOrderId.setText(id_order);
-                                customerDTO = null;
-                                txtCustomer.setText("");
-			}
-		});
-	}
+                        // Thêm chi tiết đơn hàng
+                        for (OrderItemDTO orderItemDTO : listOrderItem) {
+                            if (orderItemBLL.insert(orderItemDTO) == 0) {
+                                JOptionPane.showMessageDialog(null, "Lỗi!");
+                                return;
+                            } else {
+                                ProductDTO product = productBLL.getProductById(orderItemDTO.getProduct().getId_product());
+                                int updateQuantity = product.getQuantity() - orderItemDTO.getQuantity();
+                                product.setQuantity(updateQuantity);
+                                productBLL.update(product);
+                            }
+                        }
 
-	public void loadProductDetail(OrderItemDTO orderItemDTO) {
-		ProductDTO productDTO = productBLL.getProductById(orderItemDTO.getProduct().getId_product());
-		CategoryChildDTO categorychildDTO = categorychildBLL
-				.getCategoryChildById(productDTO.getCategorychild().getId_categorychild());
-		BrandDTO brandDTO = brandBLL.getBrandById(productDTO.getBrand().getId_brand());
-		txtProductId.setText(orderItemDTO.getProduct().getId_product());
-		txtProductName.setText(orderItemDTO.getProduct().getName());
-		txtCategoryName.setText(categorychildDTO.getName());
-		txtBrandName.setText(brandDTO.getName());
-		txtProductPrice.setText(String.valueOf(orderItemDTO.getPrice()));
-		txtProductQuantity.setText(String.valueOf(orderItemDTO.getProduct().getQuantity()));
-		image.setIcon(new ImageIcon(CopyImage.resizeImage(".\\src\\images\\product\\" + productDTO.getImage(), image)));
-	}
+                        JOptionPane.showMessageDialog(null, "Thanh toán thành công!");
+                        int pointsEarned = finalPrice / 1000; 
+                        customerDTO.setPoint(customerDTO.getPoint() + pointsEarned);
+                        customerBLL.updatePoint(customerDTO);
+                        double discountAmount = Double.parseDouble(txtVoucherPrice.getText().replace(",", "").replace(" - ", ""));
+                        ExportOrder exportOrder = new ExportOrder(orderDTO, customerDTO, listOrderItem, discountAmount);
+                        exportOrder.setVisible(true);
+                        listOrderItem.removeAllElements();
+
+                        DefaultTableModel model = (DefaultTableModel) tblOrderItem.getModel();
+                        model.setRowCount(0);
+                        date = new Date();
+                        id_order = "OR" + date.getTime();
+                        txtOrderId.setText(id_order);
+                        customerDTO = null;
+                        txtCustomer.setText("");
+                    }
+                });
+        }
+
+        public void loadProductDetail(OrderItemDTO orderItemDTO) {
+            ProductDTO productDTO = productBLL.getProductById(orderItemDTO.getProduct().getId_product());
+            CategoryChildDTO categorychildDTO = categorychildBLL
+                                        .getCategoryChildById(productDTO.getCategorychild().getId_categorychild());
+            BrandDTO brandDTO = brandBLL.getBrandById(productDTO.getBrand().getId_brand());
+
+            txtProductId.setText(productDTO.getId_product());
+            txtProductName.setText(productDTO.getName());
+            txtBrandName.setText(brandDTO.getName());
+            txtCategoryName.setText(categorychildDTO.getName());
+            txtProductPrice.setText(String.format("%.1f", orderItemDTO.getPrice()));
+            txtProductQuantity.setText(String.valueOf(orderItemDTO.getQuantity())); 
+            image.setIcon(new ImageIcon(CopyImage.resizeImage(".\\src\\images\\product\\" + productDTO.getImage(), image)));
+        }
+        public void updateQuantity(String productId, int newQuantity) {
+            OrderItemDTO foundItem = null;
+            for (OrderItemDTO item : listOrderItem) {
+                if (item.getProduct().getId_product().equals(productId)) {
+                    item.setQuantity(newQuantity);
+                    foundItem = item;  
+                    break;
+                }
+            }
+            loadItemOrderTable();
+            if (txtProductId.getText().equals(productId) && foundItem != null) {
+                loadProductDetail(foundItem); 
+            }
+        }
 
 	public static void loadItemOrderTable() {
 		float totalprice = 0;
@@ -579,17 +597,20 @@ public class SellProductForm extends JPanel {
 		tblOrderItem.getColumnModel().getColumn(4).setCellRenderer(cellRendererColor);
 		loadFormPrice();
 	}
+        
+        public static void loadFormPrice() {
+            float totalPrice = 0;
+            for (OrderItemDTO orderItem : listOrderItem) {
+                totalPrice += orderItem.getPrice() * orderItem.getQuantity();
+            }
+            float discountAmount = totalPrice * (voucherDTO.getDiscountpercent() / 100.0f);
+            float finalPrice = totalPrice - discountAmount;
 
-	public static void loadFormPrice() {
-		float totalprice = 0;
-		for (OrderItemDTO orderItem : listOrderItem) {
-			totalprice = totalprice + orderItem.getPrice() * orderItem.getQuantity();
-		}
-		txtTotalPrice.setText(String.valueOf(totalprice));
-		txtVoucherPrice.setText(" - " + String.valueOf(totalprice * voucherDTO.getDiscountpercent()));
-		txtOrderPrice.setText(String.valueOf(totalprice * (1 - voucherDTO.getDiscountpercent())));
-	}
-
+            txtTotalPrice.setText(df.format(totalPrice)); 
+            txtVoucherPrice.setText(" - " + df.format(discountAmount));
+            txtOrderPrice.setText(df.format(finalPrice)); 
+        }
+        
 	public void deleteItemOrder(int row) {
 		listOrderItem.remove(row);
 		loadItemOrderTable();

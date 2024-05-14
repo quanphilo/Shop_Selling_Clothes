@@ -1,7 +1,6 @@
 package BLL;
 
 import java.util.Vector;
-
 import DAL.PositionDAL;
 import DTO.PositionDTO;
 

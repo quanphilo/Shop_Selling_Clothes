@@ -18,7 +18,7 @@ public class CustomerDAL {
 	public Vector<CustomerDTO> getCustomers() {
 		Vector<CustomerDTO> listCustomer = new Vector<CustomerDTO>();
 		try {
-			String sql = "SELECT * FROM tbl_customer";
+			String sql = "SELECT * FROM tbl_customer where status = 1";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
 			rs= pstm.executeQuery();
@@ -47,7 +47,7 @@ public class CustomerDAL {
 	public Vector<CustomerDTO> getCustomersByFilter(String filter) {
 		Vector<CustomerDTO> listCustomer = new Vector<CustomerDTO>();
 		try {
-			String sql = "SELECT * FROM tbl_customer WHERE `id_customer` LIKE '%" + filter + "%' OR `fullname` LIKE '%" + filter + "%' OR `address` LIKE '%" + filter + "%' OR `phone` LIKE '%" + filter + "%' OR `email` LIKE '%" + filter + "%'";
+			String sql = "SELECT * FROM tbl_customer WHERE status = 1 AND (`id_customer` LIKE '%" + filter + "%' OR `fullname` LIKE '%" + filter + "%' OR `address` LIKE '%" + filter + "%' OR `phone` LIKE '%" + filter + "%' OR `email` LIKE '%" + filter + "%')";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
 			rs= pstm.executeQuery();
@@ -76,12 +76,12 @@ public class CustomerDAL {
 		Vector<CustomerDTO> listCustomer = new Vector<CustomerDTO>();
 		try {
 			String startdate = "" + (date.getYear() + 1900 ) + "-" + MONTH + "-" + "1";
-            String endate = "" + (date.getYear() + 1900) + "-" + MONTH + "-" + "31";
-			String sql = "SELECT * FROM tbl_customer  WHERE  `createdate` BETWEEN ? AND ? ";
+                        String endate = "" + (date.getYear() + 1900) + "-" + MONTH + "-" + "31";
+			String sql = "SELECT * FROM tbl_customer  WHERE status = 1 AND (`createdate` BETWEEN ? AND ? )";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
-            pstm.setString(1, startdate);
-            pstm.setString(2, endate);
+                        pstm.setString(1, startdate);
+                        pstm.setString(2, endate);
 			rs= pstm.executeQuery();
 			while (rs.next()) {
 				CustomerDTO customerDTO = new CustomerDTO(
@@ -107,7 +107,7 @@ public class CustomerDAL {
 	public CustomerDTO getCustomerById(String id_customer) {
 		CustomerDTO customerDTO = null;
 		try {
-			String sql = "SELECT * FROM tbl_customer WHERE  `id_customer`= ?";
+			String sql = "SELECT * FROM tbl_customer WHERE status = 1 AND `id_customer`= ?";
 			con = JDBCUtil.getConnection();
 			pstm = con.prepareStatement(sql);
 			pstm.setString(1, id_customer);
@@ -219,24 +219,25 @@ public class CustomerDAL {
 		return kq;
 	}
 
-	// public int delete(String id_customer) {
-	// 	int kq = 0;
-	// 	try {
-	// 		String sql = "DELETE FROM tbl_customer WHERE `id_customer` = ?";
-	// 		conn = JDBCUtil.getConnection();
-	// 		pstm = conn.prepareStatement(sql);
-	// 		pstm.setString(1, id_customer);
-	// 		kq = pstm.executeUpdate();
-	// 	} catch (Exception e) {
-	// 		e.printStackTrace();
-	// 	}finally {
-	// 		try {
-	// 			pstm.close();
-	// 			conn.close();
-	// 		} catch (Exception e2) {
-	// 			e2.printStackTrace();
-	// 		}
-	// 	}
-	// 	return kq;
-	// }
+        public int delete(String id_customer, int status) {
+            int kq = 0;
+            try {
+                String sql = "UPDATE tbl_customer SET status = ? WHERE id_customer = ?";
+                con = JDBCUtil.getConnection();
+                pstm = con.prepareStatement(sql);
+                pstm.setInt(1, status);
+                pstm.setString(2, id_customer);
+                kq = pstm.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    pstm.close();
+                    con.close();
+                } catch (Exception e2) {
+                    e2.printStackTrace();
+                }
+            }
+            return kq;
+        }
 }
